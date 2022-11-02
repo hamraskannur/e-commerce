@@ -1,0 +1,631 @@
+<%- include( '../includes/admin_includes/admin_head.ejs' ) %>
+<%- include( '../includes/user_includes/head.ejs' ) %>
+
+
+<body class="g-sidenav-show  bg-gray-200">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="/admin/admin_home" target="_blank">
+        <img src="/admin/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="/admin/admin_home">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_userlist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-person"></i>            </div>
+            <span class="nav-link-text ms-1">Userlist</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_productlist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fab fa-product-hunt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_Categorylist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fab fa-product-hunt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Category</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin-oderslis">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Orders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/SalesReport">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">view_in_ar</i>
+            </div>
+            <span class="nav-link-text ms-1">Sales Report</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/getCouponPage">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
+            </div>
+            <span class="nav-link-text ms-1">Coupon</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/Messages">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-envelope"></i>
+            </div>
+            <span class="nav-link-text ms-1">Message</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/getBanners">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fas fa-align-left"></i>            </div>
+            <span class="nav-link-text ms-1">Banners</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/adminlogout">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">login</i>
+            </div>
+            <span class="nav-link-text ms-1">Logout</span>
+          </a>
+        </li>
+     
+      </ul>
+    </div>
+    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+      <div class="mx-3">
+        <a class="btn bg-gradient-primary mt-4 w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
+      </div>
+    </div>
+  </aside>
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+   
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <label class="form-label">Type here...</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
+
+
+
+    <!-- End Navbar -->
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">weekend</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize">Today's Money</p>
+            <% if( todayprice.length> 0 ) { %>
+              <h4 class="mb-0"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z"/>
+              </svg><%=todayprice[0].totalprice%></h4>
+
+              <% } %>
+          </div>
+        </div>
+        <hr class="dark horizontal my-0">
+        <div class="card-footer p-3">
+          <p class="mb-0"><span class="text-success text-sm font-weight-bolder"></span>Today get money</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">person</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize">today customers</p>
+            <% if( usercount.length> 0 ) { %>
+
+            <h4 class="mb-0"><%=usercount[0].totalCount%></h4>
+            <% } %>
+
+          </div>
+        </div>
+        <hr class="dark horizontal my-0">
+        <div class="card-footer p-3">
+          <p class="mb-0"><span class="text-success text-sm font-weight-bolder"></span>today customers</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">person</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize">pending orders</p>
+            <% if( pendingproduct.length> 0 ) { %>
+
+            <h4 class="mb-0"><%=pendingproduct[0].totalCount%></h4>
+            <% } %>
+
+          </div>
+        </div>
+        <hr class="dark horizontal my-0">
+        <div class="card-footer p-3">
+          <p class="mb-0"><span class="text-danger text-sm font-weight-bolder"></span>Today pending product</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+      <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">weekend</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize">canceled orders</p>
+            <% if( cancelproduct.length> 0 ) { %>
+
+              <h4 class="mb-0"><%=cancelproduct[0].totalCount%></h4></h4>
+              <% } %>
+           
+          </div>
+        </div>
+        <hr class="dark horizontal my-0">
+        <div class="card-footer p-3">
+          <p class="mb-0"><span class="text-success text-sm font-weight-bolder"></span>Today canceled orders</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-lg-4 col-md-6 mt-4 mb-4">
+      <div class="card z-index-2 ">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+          <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+            <div class="chart">
+              <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="card-body">
+          <h6 class="mb-0 ">Daily Sales</h6>
+          <p class="text-sm ">Last week Performance</p>
+          <hr class="dark horizontal">
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 mt-4 mb-4">
+      <div class="card z-index-2  ">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+          <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+            <div class="chart">
+              <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h6 class="mb-0 "> Daily profit </h6>
+          <p class="text-sm ">Last week profit</p>
+          <hr class="dark horizontal">
+        
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 mt-4 mb-3">
+      <div class="card z-index-2 ">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+          <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
+            <div class="chart">
+              <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h6 class="mb-0 ">cancel Orders </h6>
+          <p class="text-sm ">Last week cancel Orders</p>
+          <hr class="dark horizontal">
+         
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+</div>
+</main>
+
+</div>
+<% if( cancelOrder.length== 7 ) { %>
+
+
+<div class="d-none">
+  
+  <h1 id="cancelOrderprice0"> <%=cancelOrder[0].totalprice%></h1>
+  <h1 id="cancelOrderprice1"> <%=cancelOrder[1].totalprice%></h1>
+  <h1 id="cancelOrderprice2"> <%=cancelOrder[2].totalprice%></h1>
+  <h1 id="cancelOrderprice3"> <%=cancelOrder[3].totalprice%></h1>
+  <h1 id="cancelOrderprice4"> <%=cancelOrder[4].totalprice%></h1>
+  <h1 id="cancelOrderprice5"> <%=cancelOrder[5].totalprice%></h1>
+  <h1 id="cancelOrderprice6"> <%=cancelOrder[6].totalprice%></h1>
+</div>
+<% } %>
+<% if( cancelOrder.length== 7 ) { %>
+
+<div class="d-none">
+  <h1 id="cancelOrderDate0"> <%=cancelOrder[0]._id%></h1>
+  <h1 id="cancelOrderDate1"> <%=cancelOrder[1]._id%></h1>
+  <h1 id="cancelOrderDate2"> <%=cancelOrder[2]._id%></h1>
+  <h1 id="cancelOrderDate3"> <%=cancelOrder[3]._id%></h1>
+  <h1 id="cancelOrderDate4"> <%=cancelOrder[4]._id%></h1>
+  <h1 id="cancelOrderDate5"> <%=cancelOrder[5]._id%></h1>
+  <h1 id="cancelOrderDate6"> <%=cancelOrder[6]._id%></h1>
+</div>
+<% } %>
+
+
+<div class="d-none">
+  <h1 id="date0"> <%=data[0]._id%></h1>
+  <h1 id="date1"> <%=data[1]._id%></h1>
+  <h1 id="date2"> <%=data[2]._id%></h1>
+  <h1 id="date3"> <%=data[3]._id%></h1>
+  <h1 id="date4"> <%=data[4]._id%></h1>
+  <h1 id="date5"> <%=data[5]._id%></h1>
+  <h1 id="date6"> <%=data[6]._id%></h1>
+</div>
+
+
+<div class="d-none">
+  <h1 id="totalprice0"> <%=data[0].totalprice%></h1>
+  <h1 id="totalprice1"> <%=data[1].totalprice%></h1>
+  <h1 id="totalprice2"> <%=data[2].totalprice%></h1>
+  <h1 id="totalprice3"> <%=data[3].totalprice%></h1>
+  <h1 id="totalprice4"> <%=data[4].totalprice%></h1>
+  <h1 id="totalprice5"> <%=data[5].totalprice%></h1>
+  <h1 id="totalprice6"> <%=data[6].totalprice%></h1>
+</div>
+<!--   Core JS Files   -->
+<script src="/admin/js/core/popper.min.js"></script>
+<script src="/admin/js/core/bootstrap.min.js"></script>
+<script src="/admin/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="/admin/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="/admin/js/plugins/chartjs.min.js"></script>
+<script>
+var ctx = document.getElementById("chart-bars").getContext("2d");
+let datewithyear0 = document.getElementById("date0").innerHTML
+let datewithyear1 = document.getElementById("date1").innerHTML
+let datewithyear2 = document.getElementById("date2").innerHTML
+let datewithyear3 = document.getElementById("date3").innerHTML
+let datewithyear4 = document.getElementById("date4").innerHTML
+let datewithyear5 = document.getElementById("date5").innerHTML
+let datewithyear6 = document.getElementById("date6").innerHTML
+
+let date0 = datewithyear0.slice(6,11);
+let date1 = datewithyear1.slice(6,11); 
+let date2 = datewithyear2.slice(6,11); 
+let date3 = datewithyear3.slice(6,11); 
+let date4 = datewithyear4.slice(6,11); 
+let date5 = datewithyear5.slice(6,11); 
+let date6 = datewithyear6.slice(6,11); 
+
+let totalprice0 = document.getElementById("totalprice0").innerHTML
+let totalprice1 = document.getElementById("totalprice1").innerHTML
+let totalprice2 = document.getElementById("totalprice2").innerHTML
+let totalprice3 = document.getElementById("totalprice3").innerHTML
+let totalprice4 = document.getElementById("totalprice4").innerHTML
+let totalprice5 = document.getElementById("totalprice5").innerHTML
+let totalprice6 = document.getElementById("totalprice6").innerHTML
+ console.log(totalprice0*5/100);
+
+
+new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: [date0, date1, date2, date3, date4 ,date5, date6],
+    datasets: [{
+      label: "Sales",
+      tension: 0.4,
+      borderWidth: 0,
+      borderRadius: 4,
+      borderSkipped: false,
+      backgroundColor: "rgba(255, 255, 255, .8)",
+      data: [ totalprice0, totalprice1, totalprice2, totalprice3, totalprice4, totalprice5, totalprice6],
+      maxBarThickness: 6
+    }, ],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      }
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index',
+    },
+    scales: {
+      y: {
+        grid: {
+          drawBorder: false,
+          display: true,
+          drawOnChartArea: true,
+          drawTicks: false,
+          borderDash: [6, 6],
+          color: 'rgba(255, 255, 255, .2)'
+        },
+        ticks: {
+          suggestedMin: 0,
+          suggestedMax: 500,
+          beginAtZero: true,
+          padding: 10,
+          font: {
+            size: 14,
+            weight: 300,
+            family: "Roboto",
+            style: 'normal',
+            lineHeight: 2
+          },
+          color: "#fff"
+        },
+      },
+      x: {
+        grid: {
+          drawBorder: false,
+          display: true,
+          drawOnChartArea: true,
+          drawTicks: false,
+          borderDash: [5, 5],
+          color: 'rgba(255, 255, 255, .2)'
+        },
+        ticks: {
+          display: true,
+          color: '#f8f9fa',
+          padding: 10,
+          font: {
+            size: 14,
+            weight: 300,
+            family: "Roboto",
+            style: 'normal',
+            lineHeight: 2
+          },
+        }
+      },
+    },
+  },
+});
+
+
+var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+new Chart(ctx2, {
+  type: "line",
+  data: {
+    labels: [date0, date1, date2, date3, date4 ,date5, date6],
+    datasets: [{
+      label: "Mobile apps",
+      tension: 0,
+      borderWidth: 0,
+      pointRadius: 5,
+      pointBackgroundColor: "rgba(255, 255, 255, .8)",
+      pointBorderColor: "transparent",
+      borderColor: "rgba(255, 255, 255, .8)",
+      borderColor: "rgba(255, 255, 255, .8)",
+      borderWidth: 4,
+      backgroundColor: "transparent",
+      fill: true,
+      data: [ totalprice0*5/100, totalprice1*5/100, totalprice2*5/100,totalprice3*5/100, totalprice4*5/100,totalprice5*5/100, totalprice6*5/100 ],
+      maxBarThickness: 6
+
+    }],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      }
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index',
+    },
+    scales: {
+      y: {
+        grid: {
+          drawBorder: false,
+          display: true,
+          drawOnChartArea: true,
+          drawTicks: false,
+          borderDash: [5, 5],
+          color: 'rgba(255, 255, 255, .2)'
+        },
+        ticks: {
+          display: true,
+          color: '#f8f9fa',
+          padding: 10,
+          font: {
+            size: 14,
+            weight: 300,
+            family: "Roboto",
+            style: 'normal',
+            lineHeight: 2
+          },
+        }
+      },
+      x: {
+        grid: {
+          drawBorder: false,
+          display: false,
+          drawOnChartArea: false,
+          drawTicks: false,
+          borderDash: [5, 5]
+        },
+        ticks: {
+          display: true,
+          color: '#f8f9fa',
+          padding: 10,
+          font: {
+            size: 14,
+            weight: 300,
+            family: "Roboto",
+            style: 'normal',
+            lineHeight: 2
+          },
+        }
+      },
+    },
+  },
+});
+
+
+
+var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+let cancelOrderprice0 = document.getElementById("cancelOrderprice0").innerHTML
+let cancelOrderprice1 = document.getElementById("cancelOrderprice1").innerHTML
+let cancelOrderprice2 = document.getElementById("cancelOrderprice2").innerHTML
+let cancelOrderprice3 = document.getElementById("cancelOrderprice3").innerHTML
+let cancelOrderprice4 = document.getElementById("cancelOrderprice4").innerHTML
+let cancelOrderprice5 = document.getElementById("cancelOrderprice5").innerHTML
+let cancelOrderprice6 = document.getElementById("cancelOrderprice6").innerHTML
+
+let cancelOrderwithyear0 = document.getElementById("cancelOrderDate0").innerHTML
+let cancelOrderwithyear1 = document.getElementById("cancelOrderDate1").innerHTML
+let cancelOrderwithyear2 = document.getElementById("cancelOrderDate2").innerHTML
+let cancelOrderwithyear3 = document.getElementById("cancelOrderDate3").innerHTML
+let cancelOrderwithyear4 = document.getElementById("cancelOrderDate4").innerHTML
+let cancelOrderwithyear5 = document.getElementById("cancelOrderDate5").innerHTML
+let cancelOrderwithyear6 = document.getElementById("cancelOrderDate6").innerHTML
+
+let oderCanceldate0 = cancelOrderwithyear0.slice(6,11);
+let oderCanceldate1 = cancelOrderwithyear1.slice(6,11); 
+let oderCanceldate2 = cancelOrderwithyear2.slice(6,11); 
+let oderCanceldate3 = cancelOrderwithyear3.slice(6,11); 
+let oderCanceldate4 = cancelOrderwithyear4.slice(6,11); 
+let oderCanceldate5 = cancelOrderwithyear5.slice(6,11); 
+let oderCanceldate6 = cancelOrderwithyear6.slice(6,11); 
+
+
+new Chart(ctx3, {
+  type: "line",
+  data: {
+    labels: [ oderCanceldate0 ,  oderCanceldate1 ,  oderCanceldate2 ,  oderCanceldate3 ,  oderCanceldate4 ,  oderCanceldate5 ,  oderCanceldate6 ],
+    datasets: [{
+      label: "Mobile apps",
+      tension: 0,
+      borderWidth: 0,
+      pointRadius: 5,
+      pointBackgroundColor: "rgba(255, 255, 255, .8)",
+      pointBorderColor: "transparent",
+      borderColor: "rgba(255, 255, 255, .8)",
+      borderWidth: 4,
+      backgroundColor: "transparent",
+      fill: true,
+      data: [cancelOrderprice0, cancelOrderprice1, cancelOrderprice2, cancelOrderprice3, cancelOrderprice4, cancelOrderprice5, cancelOrderprice6],
+      maxBarThickness: 6
+
+    }],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      }
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index',
+    },
+    scales: {
+      y: {
+        grid: {
+          drawBorder: false,
+          display: true,
+          drawOnChartArea: true,
+          drawTicks: false,
+          borderDash: [5, 5],
+          color: 'rgba(255, 255, 255, .2)'
+        },
+        ticks: {
+          display: true,
+          padding: 10,
+          color: '#f8f9fa',
+          font: {
+            size: 14,
+            weight: 300,
+            family: "Roboto",
+            style: 'normal',
+            lineHeight: 2
+          },
+        }
+      },
+      x: {
+        grid: {
+          drawBorder: false,
+          display: false,
+          drawOnChartArea: false,
+          drawTicks: false,
+          borderDash: [5, 5]
+        },
+        ticks: {
+          display: true,
+          color: '#f8f9fa',
+          padding: 10,
+          font: {
+            size: 14,
+            weight: 300,
+            family: "Roboto",
+            style: 'normal',
+            lineHeight: 2
+          },
+        }
+      },
+    },
+  },
+});
+</script>
+<script>
+var win = navigator.platform.indexOf('Win') > -1;
+if (win && document.querySelector('#sidenav-scrollbar')) {
+  var options = {
+    damping: '0.5'
+  }
+  Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+}
+</script>
+  
+  <%- include( '../includes/admin_includes/admin_end.ejs' ) %>

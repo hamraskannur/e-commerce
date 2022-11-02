@@ -1,0 +1,134 @@
+
+<%- include( '../includes/user_includes/head.ejs' ) %>
+<%-include('../includes/user_includes/navegation.ejs')%>
+
+
+
+
+  <div style="padding-top: 5rem;" class="container mt-5">
+    <form class="mt-5" action="/addAdress" method="post">
+        <div class="form-row ">
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Name</label>
+                <input type="text" name="Name" class="form-control" id="inputPassword4" placeholder="Full Name" required>
+              </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">phone Number</label>
+            <input type="text" name="phoneNo" class="form-control" id="inputEmail4" placeholder="Phone No" required>
+          </div>
+          
+        </div>
+        
+        <div class="form-group">
+          <label for="inputAddress2">Address </label>
+          <input type="text" name="Address" class="form-control" id="inputAddress3" placeholder="House Name, building Name, or floor" required>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Local Address</label>
+            <input type="text" name="LocalAddress" class="form-control" id="inputAddress2" placeholder="road Name, area, or colony" required>
+          </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" name="city" class="form-control" id="inputCity" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">State</label>
+            <input type="text" name="State" class="form-control" id="inputZip" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" name="Zip" class="form-control" id="inputZip" required>
+          </div>
+         
+          <fieldset class="form-group mt-4">
+            <div class="row">
+              <div class="col-sm-10">
+               
+              <div class="form-check ">
+                <input class="form-check-input " type="radio" name="gridRadios" id="gridRadios1" value="cashondelivery" checked>
+                <label class="form-check-label" for="gridRadios1">cashondelivery</label>
+              </div>
+              <div class="form-check ">
+                <input class="form-check-input " type="radio" name="gridRadios" id="gridRadios2" value="onlinePayment" checked>
+                <label class="form-check-label" for="gridRadios2">onlinePayment</label>
+              </div>
+              
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-dark">SAVE ADDRESS</button>
+      </form>
+    
+    </div>
+
+  
+
+<div class="container d-flex justify-content-center mt-50 mb-50 mt-5">
+            
+  <div class="row mt-5">
+
+    <% if(useraddress.length>0) { %>
+
+      <% for(element of useraddress[0].adress) { %>
+   
+     <div class="col-md-10">
+      
+              <a href="/getOrdersProduct/">
+          <div style="width: 80rem;" class="card card-body mt-3">
+                      <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+                          <div class="mr-2 mb-3 mb-lg-0">
+                                  <img src="https://www.shutterstock.com/image-vector/shipping-fast-delivery-man-riding-600w-1145000942.jpg" width="150" height="150" alt="">
+                          </div>
+                          <div class="media-body">                            
+                              <li class="list-inline-item"><h6 class="text-dark" data-abc="true">
+                                  <p class="mb-3">Name:<%=element.Name%> </p>
+                                  </h6></li>
+                                  <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                                      <li class="list-inline-item"><a class="text-dark" data-abc="true">phone Number:<%=element.PhoneNo%></a></li>
+                                  </ul>
+                                  <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                                      <li class="list-inline-item"><a  class="text-dark" data-abc="true">Address:<%=element.Address%></a></li>
+                                  </ul>
+                              <ul class="list-inline list-inline-dotted mb-0 ">
+                                  <li class="list-inline-item">City:<%=element.city%><a data-abc="true"> </a></li>
+                              </ul>
+                              <ul class="list-inline list-inline-dotted mb-0 ">
+                                <li class="list-inline-item">State:<%=element.state%><a data-abc="true"> </a></li>
+                            </ul>
+                            <ul class="list-inline list-inline-dotted mb-0 ">
+                              <li class="list-inline-item"> Zip:<%=element.zip%> <a data-abc="true"> </a></li>
+                          </ul>
+                          <ul class="list-inline list-inline-dotted mb-0 ">
+                            <li class="list-inline-item"> Payment:<%=element.Payment%> <a data-abc="true"> </a></li>
+                        </ul>
+                          </div>
+                          <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+                           
+                              <a href="/selectAddress/<%=element._id%>" type="button" class="btn btn-dark  text-white">Select Address</a>                                          
+                          
+                          </div>
+                      </div>
+        
+               
+                  </div>
+              </a>
+        </div>  
+        <% } %>
+        <% }%>                   
+  </div>
+</div>
+
+<%- include( '../includes/user_includes/footer.ejs' ) %>
+<%- include( '../includes/user_includes/end.ejs' ) %>
+

@@ -1,0 +1,199 @@
+<%- include( '../includes/admin_includes/admin_head.ejs' ) %>
+<%- include( '../includes/user_includes/head.ejs' ) %>
+
+
+<body class="g-sidenav-show  bg-gray-200">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="/admin/admin_home" target="_blank">
+        <img src="/admin/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_home">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_userlist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-person"></i>            </div>
+            <span class="nav-link-text ms-1">Userlist</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_productlist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fab fa-product-hunt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_Categorylist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fab fa-product-hunt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Category</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin-oderslis">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Orders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/SalesReport">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">view_in_ar</i>
+            </div>
+            <span class="nav-link-text ms-1">Sales Report</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/getCouponPage">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
+            </div>
+            <span class="nav-link-text ms-1">Coupon</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="/admin/Messages">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-envelope"></i>
+            </div>
+            <span class="nav-link-text ms-1">Message</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/getBanners">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fas fa-align-left"></i>            </div>
+            <span class="nav-link-text ms-1">Banners</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/adminlogout">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">login</i>
+            </div>
+            <span class="nav-link-text ms-1">Logout</span>
+          </a>
+        </li>
+     
+      </ul>
+    </div>
+    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+      <div class="mx-3">
+        <a class="btn bg-gradient-primary mt-4 w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
+      </div>
+    </div>
+  </aside>
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+   
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <label class="form-label">Type here...</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
+
+
+
+    <div class="align-items-center justify-content-center">
+
+      <div style="margin-left: 5rem; width: 100rem; " class="row mb-4 mt-5 ml-5">
+          <div class="col-lg-8 col-md-6 mb-md-0 mb-4 mt-5 ml-5">
+              <div class="card">
+                 
+                  <div  id="table" class="card-body px-0 pb-2 ">
+                      <div class="table-responsive">
+                          <table class="table align-items-center mb-0">
+                              <thead>
+                                  <tr>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Date</th>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                          Email</th>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                          Message </th>
+                                    
+                                         
+                                  </tr>
+                              </thead>
+                             
+
+                                      <tbody>
+                                          <tr>
+                                              <% if( Messages.length> 0 ) { %>
+                                                  <% for(Messages of Messages) { %>
+                                              <td>
+                                                  <div class="d-flex px-2 py-1">
+
+                                                      <div class="d-flex flex-column justify-content-center">
+                                                          <h6 class="mb-0 text-sm">
+                                                              <%=Messages.date%>
+                                                          </h6>
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              <td>
+                                                  <div class="d-flex px-2 py-1">
+
+                                                      <div class="d-flex flex-column justify-content-center">
+                                                          <h6 class="mb-0 text-sm">
+                                                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                                                                </svg><%=Messages.Email%>
+                                                          </h6>
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              <td>
+                                                  <div class="d-flex px-2 py-1">
+
+                                                      <div class="d-flex flex-column justify-content-center">
+                                                          <a href="/admin/getOneMessage/<%=Messages._id%>" class="btn btn-dark btn-sm">
+                                                            Message
+                                                          </a>
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                          </tr>
+                                          <% } %>
+                                     
+                                          <% }%>
+                                              
+                                        </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</main>
+
+
+
+
+<%- include( '../includes/admin_includes/admin_end.ejs' ) %>

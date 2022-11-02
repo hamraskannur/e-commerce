@@ -1,0 +1,54 @@
+<%- include( '../includes/user_includes/head.ejs' ) %>
+<%-include('../includes/user_includes/navegation.ejs')%>
+
+<div  style="background-color:white; margin-top: 8rem; ">
+<% if( order ) { %>
+        <% for(product of order.product) { %>
+  <section>
+    <div  class="container  ">
+      <div  class="row justify-content-center mb-3">
+        <div  class="col-md-12 col-xl-10">
+          <div class="card shadow-0 border rounded-3">
+            <div class="card-body">
+              <div  class="row">
+                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                    <img style="height: 10rem;" src="/products/productImages/<%=product.productId%>.jpg" 
+                      class="w-100" />
+                    <a href="#!">
+                      <div class="hover-overlay">
+                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6 mt-5">
+                  <h5><%=product.name%></h5>
+                  
+                  <p class="text-truncate mb-4 mb-md-0 mt-3">
+                    <h5>quantity:<%=product.quantity%></h5>
+                  </p>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                  <div class="d-flex flex-row align-items-center mb-1">
+                    <h4 class="mb-1 me-1"><i class="bi bi-currency-rupee"></i><%=product.price%></h4>
+                  </div>
+                  <h6 class="text-success">Free shipping</h6>
+                  <div class="d-flex flex-column mt-4">
+                    <button class="btn btn-outline-primary btn-sm mt-2" type="button">
+                     more Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+
+  <% } %>
+
+  <% }%>
+</div>
+<%- include( '../includes/user_includes/end.ejs' ) %>

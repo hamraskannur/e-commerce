@@ -1,0 +1,79 @@
+
+<footer class="bg3 p-t-75 p-b-32 mt-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+					Categories
+				</h4>
+
+				<ul>	<% if( Categorydetails.length> 0 ) { %>
+					<% for( Category of Categorydetails ) { %>
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								<%=Category.Category%></a>
+	
+							</a>
+						</li>
+				<% } %>
+				<% }%>
+					
+				</ul>
+			</div>
+
+			<div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+					Help
+				</h4>
+
+				<ul>
+
+					
+					<li class="p-b-10">
+						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<%=banner[2].help1%>
+						</a>
+					</li>
+					<li class="p-b-10">
+						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<%=banner[2].help2%>
+						</a>
+					</li><li class="p-b-10">
+						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<%=banner[2].help3%>
+						</a>
+					</li><li class="p-b-10">
+						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<%=banner[2].help4%>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+					GET IN TOUCH
+				</h4>
+
+				<p class="stext-107 cl7 size-201">
+					Phone No:  <%=banner[2].PhoneNo%>
+				</p>
+
+				<div class="p-t-27">
+					<a href="<%=banner[2].Facebook%>" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<i class="fa fa-facebook"></i>
+					</a>
+
+					<a href="<%=banner[2].instagram%>" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<i class="fa fa-instagram"></i>
+					</a>
+
+				
+				</div>
+			</div>
+
+			
+		</div>
+
+		
+	</div>

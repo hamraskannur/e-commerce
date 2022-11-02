@@ -1,0 +1,68 @@
+<%- include( '../includes/user_includes/head.ejs' ) %>
+<%-include('../includes/user_includes/navegation.ejs')%>
+
+<% if(userMyAccount){%>
+
+<section style="background-color: #eee;  margin-top: 9rem;">
+    <div class="container py-5 mt-5">
+      <div class="row mt-5">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3"><%=userMyAccount.Name%></h5>
+            
+              <div class="d-flex justify-content-center mb-2">
+                <a href="/viewcartmycart" type="button" class="btn btn-outline-dark ms-1">cart</a>
+                <a href="/getwishlistpage" type="button" class="btn btn-outline-dark ms-1">Wishlist</a>
+                <a href="/orderslist" type="button" class="btn btn-outline-dark ms-1">Orderslist</a>
+              </div>
+            </div>
+          </div>
+       
+        </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"><%=userMyAccount.Name%></p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"><%=userMyAccount.Email%></p>
+                </div>
+              </div>
+              <hr>
+             
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Mobile</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">7736948836</p>
+                </div>
+              </div>
+              <hr>
+             
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+  <%}else{%>
+<h1>Please take Account</h1>
+<a href="/login" class="btn btn-outline-dark ms-1">login page</a>
+<% }%>
+
+  <%- include( '../includes/user_includes/end.ejs' ) %>

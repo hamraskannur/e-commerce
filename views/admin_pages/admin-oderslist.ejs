@@ -1,0 +1,317 @@
+<!-- addproduct -->
+<%- include( '../includes/admin_includes/admin_head.ejs' ) %>
+<%- include( '../includes/user_includes/head.ejs' ) %>           
+
+<body class="g-sidenav-show  bg-gray-200">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="/admin/admin_home" target="_blank">
+        <img src="/admin/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_home">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_userlist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-person"></i>            </div>
+            <span class="nav-link-text ms-1">Userlist</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_productlist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fab fa-product-hunt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_Categorylist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fab fa-product-hunt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Category</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="/admin/admin-oderslis">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Orders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/SalesReport">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">view_in_ar</i>
+            </div>
+            <span class="nav-link-text ms-1">Sales Report</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/getCouponPage">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
+            </div>
+            <span class="nav-link-text ms-1">Coupon</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/Messages">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-envelope"></i>
+            </div>
+            <span class="nav-link-text ms-1">Message</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/getBanners">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fas fa-align-left"></i>            </div>
+            <span class="nav-link-text ms-1">Banners</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/adminlogout">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">login</i>
+            </div>
+            <span class="nav-link-text ms-1">Logout</span>
+          </a>
+        </li>
+     
+      </ul>
+    </div>
+    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+      <div class="mx-3">
+        <a class="btn bg-gradient-primary mt-4 w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
+      </div>
+    </div>
+  </aside>
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+   
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <label class="form-label">Type here...</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
+
+
+
+      
+
+      <div class="container">
+        <a href="/admin/admin-oderslis" style="background-color:#EC407A ; color: white; " class=" btn btn">All Payments product </a>
+        <a href="/admin/payments-oderslist/onlinePayment" style="background-color:#EC407A ; color: white; " class=" btn btn"> Online Payments</a>
+        <a href="/admin/payments-oderslist/cashondelivery" style="background-color:#EC407A ; color: white; " class=" btn btn"> Cash on Delivery</a>
+        <a href="/admin/cancel-order/canceled" style="background-color:#EC407A ; color: white; " class=" btn btn">canceled order</a>
+        <a href="/admin/cancel-order/Shipped" style="background-color:#EC407A ; color: white; " class=" btn btn">Shipped order</a>
+      </div>
+
+
+    <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="card my-4">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                  <h6 class="text-white text-capitalize ps-3">order list</h6>
+                </div>
+              </div>
+  
+              <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+  
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User Name</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Payment</th>
+
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Time</th>
+                       
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">orderStatus</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">totalprice</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">products</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% if( order ) { %>
+                            <% for(element of order) { %>
+
+
+                          <tr >
+                            <td>
+                              <div class="d-flex px-2 py-1 mt-4">
+                               
+                                <div class="d-flex flex-column justify-content-center">
+                                    <% for(userdetails of element.orders.userdetails) { %>
+
+                                  <h6 class="mb-0 text-sm">
+                                    <%=userdetails.Name%>
+                                </h6>
+
+                                
+                                <% if( userdetails.Payment=="onlinePayment" ) { %>
+
+                                <td class="align-middle text-center text-sm">
+                                    <span class="text-secondary text-xs font-weight-bold ">
+                                     <h6 class="bg-success text-dark"> Payment:<%=userdetails.Payment%></h6>
+                                    </span>
+                                  </td>
+                                  <% } else { %>
+                                    <td class="align-middle text-center text-sm">
+                                      <span class="text-secondary text-xs font-weight-bold ">
+                                       <h6 class="bg-warning text-dark"> Payment:<%=userdetails.Payment%></h6>
+                                      </span>
+                                    </td>
+
+                                  <% } %>
+
+                                <% } %>
+
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+
+                              <h6 class="text-xs font-weight-bold mb-0">
+                                Date:<%=element.orders.date%>
+                            </h6>
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-secondary text-xs font-weight-bold">
+                               <h6> Date:<%=element.orders.time%></h6>
+                              </span>
+                            </td>
+                            <td style="  border-radius: 12px; "  class="align-middle text-center">
+                              <% if( element.orders.orderStatus=="pending" ) { %>
+                            <div style="background-color: yellow; color: black; " class="dropdown">
+                              <% } else if(element.orders.orderStatus=="placed") { %>
+                                <div style="background-color: #4CAF50;  color: white;" class="dropdown">
+                                  <% } else if(element.orders.orderStatus=="canceled") { %>
+                                    <div style="background-color:red;  color: white;" class="dropdown">
+                                      <% } else if(element.orders.orderStatus=="Shipped") { %>
+                                        <div style="background-color:rgb(150, 149, 210);  color: white;" class="dropdown">
+                                          <% } else if(element.orders.orderStatus=="delivered") { %>
+                                            <div style="background-color:greenyellow;  color: white;" class="dropdown">
+
+                                  <% } %>
+
+                              <button class="dropbtn"><%=element.orders.orderStatus%></button>
+                              <div class="dropdown-content">
+                                <% if( element.orders.orderStatus !=="Shipped" ) { %>
+                              <a onclick="changestatus('Shipped','<%=element._id%>','<%=element.orders._id%>')" class="text-dark">Shipped</a>
+                              <% } %>
+                              <% if( element.orders.orderStatus !=="placed" ) { %>
+                              <a onclick="changestatus('placed','<%=element._id%>','<%=element.orders._id%>')" class="text-dark">placed</a>
+                              <% } %>
+                              <% if( element.orders.orderStatus !=="canceled" ) { %>
+                              <a onclick="changestatus('canceled','<%=element._id%>','<%=element.orders._id%>')" class="text-dark">cancel</a>
+                              <% } %>
+                              <% if( element.orders.orderStatus !=="pending" ) { %>
+                              <a onclick="changestatus('pending','<%=element._id%>','<%=element.orders._id%>')" class="text-dark">pending</a>
+                              <% } %>
+                              <% if( element.orders.orderStatus !=="delivered" ) { %>
+                                <a onclick="changestatus('delivered','<%=element._id%>','<%=element.orders._id%>')" class="text-dark">delivered</a>
+                                <% } %>
+                             
+                              </div>
+                            </div>
+                          </td>
+
+                            </td>
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">
+                                    <h6> <i class="bi bi-currency-rupee"></i><%=element.orders.totalprice%></h6>
+
+                              </span>
+                              </td>
+                              <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">
+                                    <div class="d-flex flex-column mt-4">
+                                        <a href="/admin/adminGetOdersProduct/<%=element.orders._id%>" class="btn btn-outline-primary btn-sm mt-2" type="button">
+                                         products
+                                        </a>
+                                      </div>
+
+                              </span>
+                              </td>
+                          
+                          </tr>
+                          
+
+                          
+                          <% } %>
+
+                          <% }%>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+  <style>
+    .dropbtn {
+ 
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+  </style>
+      
+    <%- include( '../includes/admin_includes/admin_end.ejs' ) %>

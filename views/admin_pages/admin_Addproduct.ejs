@@ -1,0 +1,231 @@
+<!-- addproduct -->
+<%- include( '../includes/admin_includes/admin_head.ejs' ) %>
+<%- include( '../includes/user_includes/head.ejs' ) %>           
+
+
+<body class="g-sidenav-show  bg-gray-200">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="/admin/admin_home" target="_blank">
+        <img src="/admin/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_home">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">Dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_userlist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-person"></i>            </div>
+            <span class="nav-link-text ms-1">Userlist</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="/admin/admin_productlist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fab fa-product-hunt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_Categorylist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fab fa-product-hunt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Category</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin-oderslis">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Orders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/SalesReport">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">view_in_ar</i>
+            </div>
+            <span class="nav-link-text ms-1">Sales Report</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/getCouponPage">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
+            </div>
+            <span class="nav-link-text ms-1">Coupon</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white  " href="/admin/Messages">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-envelope"></i>
+            </div>
+            <span class="nav-link-text ms-1">Message</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/getBanners">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fas fa-align-left"></i>            </div>
+            <span class="nav-link-text ms-1">Banners</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/adminlogout">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">logout</i>
+            </div>
+            <span class="nav-link-text ms-1">Logout</span>
+          </a>
+        </li>
+     
+      </ul>
+    </div>
+    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+      <div class="mx-3">
+        <a class="btn bg-gradient-primary mt-4 w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
+      </div>
+    </div>
+  </aside>
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+   
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <label class="form-label">Type here...</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
+
+
+<!-- addproduct -->
+<div class="container-fluid pt-5 mt-5">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+        <span class=" pr-3">
+            Add Product
+        </span>
+    </h2>
+    <div class="row px-xl-5 pb-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 pb-1">
+            <form action="/admin/Add-product" method="POST" enctype="multipart/form-data">
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Product Title</label>
+                        <input type="text" class="form-control" id="name" name="title" placeholder="product name" required>
+                    </div>
+                    
+                    <div class="form-group col-md-6">
+                        <label for="inputState">Category</label>
+                        <select id="inputState" name="category" class="form-control" required>
+                            <% if( Category.length> 0 ) { %>
+                                <% for( Category of Category ) { %>
+                            <option><%=Category.Category%></option>
+                            <% } %>
+                        <% } else { %>
+                        <div>
+                            <h1>null</h1>
+                        </div>
+                         <% }%>
+                        </select>
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Description</label>
+                    <textarea class="form-control" id="Description" rows="3" name="description"required>
+                        </textarea>
+                </div>
+
+                <div class="form-row">
+
+
+                    <div class="form-group col-md-2">
+                        <label for="inputZip">Quantity</label>
+                        <input type="number" class="form-control" id="Quantity" name="quantity" required>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="inputZip">Price</label>
+                        <input type="number" class="form-control" id="Price" name="price" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                        <label for="file">Upload File </label>
+                        <input type="file" name="img" id="Image" class="form-control" multiple  >
+                </div>
+
+                <button id="Addproductimg"  type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+  
+      $('#btn-submit').click(function () {
+        $(".error").hide();
+        var hasError = false;
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        var nameVal = $("#name").val();
+        var DescriptionVal = $("#Description").val();
+        var QuantityVal = $("#Quantity").val();
+        var PriceVal = $("#Price").val();
+        var ImageValVal = $("#ImageVal").val();
+
+
+        if (emailaddressVal == '') {
+          $("#name").after('<span class="error text-danger">Please enter your email address.</span>');
+          hasError = true;
+        }
+        if (DescriptionVal == '') {
+          $("#Description").after('<span class="error text-danger">Please enter your password.</span>');
+          hasError = true;
+        }
+        if (QuantityVal == '') {
+          $("#Quantity").after('<span class="error text-danger">Please enter your password.</span>');
+          hasError = true;
+        }
+        if (PriceVal == '') {
+          $("#Price").after('<span class="error text-danger">Please enter your password.</span>');
+          hasError = true;
+        }
+        if (ImageVal == '') {
+          $("#Image").after('<span class="error text-danger">Please enter your password.</span>');
+          hasError = true;
+        }
+        if (hasError == true) { return false; }
+      });
+    });
+
+
+  </script>
+
+<%- include( '../includes/admin_includes/admin_end.ejs' ) %>
+
+
+
+
+

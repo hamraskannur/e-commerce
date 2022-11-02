@@ -1,0 +1,220 @@
+<%- include( '../includes/admin_includes/admin_head.ejs' ) %>
+<%- include( '../includes/user_includes/head.ejs' ) %>
+
+
+<body class="g-sidenav-show  bg-gray-200">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="/admin/admin_home" target="_blank">
+        <img src="/admin/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_home">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_userlist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-person"></i>            </div>
+            <span class="nav-link-text ms-1">Userlist</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin_productlist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fab fa-product-hunt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="/admin/admin_Categorylist">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fab fa-product-hunt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Category</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/admin-oderslis">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Orders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/SalesReport">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">view_in_ar</i>
+            </div>
+            <span class="nav-link-text ms-1">Sales Report</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/getCouponPage">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
+            </div>
+            <span class="nav-link-text ms-1">Coupon</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/Messages">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-envelope"></i>
+            </div>
+            <span class="nav-link-text ms-1">Message</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/getBanners">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fas fa-align-left"></i>            </div>
+            <span class="nav-link-text ms-1">Banners</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/admin/adminlogout">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">login</i>
+            </div>
+            <span class="nav-link-text ms-1">Logout</span>
+          </a>
+        </li>
+     
+      </ul>
+    </div>
+    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+      <div class="mx-3">
+        <a class="btn bg-gradient-primary mt-4 w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
+      </div>
+    </div>
+  </aside>
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+   
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <label class="form-label">Type here...</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
+
+
+      <!-- End Navbar -->
+
+            <div class="container">
+              <form >
+                    <div class="form-row">
+
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Category</label>
+                            <input type="text" id="Addcategoryid" name="Category" class="form-control"  placeholder="Category name" required>
+                        </div>
+                        <button onclick="Addcategory()" id="categoryId" type="button" style="background-color:#EC407A ; color: white; height: 3rem; "class=" btn btn mt-4"> ADD Category</button>
+                    </div>
+                  </form>
+            </div>
+            <div class="align-items-center justify-content-center">
+                <small class="text-danger"><%=Categoryerr%></small>
+
+            </div>
+            <div class="container">
+
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="card my-4">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                                <h6 class="text-white text-capitalize ps-3">category table</h6>
+                            </div>
+                        </div>
+                        <div class="card-body px-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <table class="table align-items-center justify-content-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Category</th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                products</th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                </th>
+                                        
+                                        </tr>
+                                    </thead>
+                                    
+
+                                    <tbody>
+                                        <% if( Category.length> 0 ) { %>
+                                            <% for( Category of Category ) { %>
+                                       
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2">
+                                                    <div>
+                                                        <img src="/admin/img/small-logos/logo-asana.svg"
+                                                            class="avatar avatar-sm rounded-circle me-2" alt="spotify">
+                                                    </div>
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-sm"><%=Category.Category%></h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                              <a href="/admin/Category-products/<%=Category.Category%>">
+                                                <button class="btn btn-dark btn-sm">
+                                                  Products
+                                                </button>
+                                              </a>
+                                            </td>
+                                            
+                                            <td class="">
+
+                                                <a onclick="DeleteCategory('<%=Category.Category%>')"
+                                                    class="btn btn-danger " data-toggle="tooltip"
+                                                    data-original-title="Edit user">
+                                                    delete
+                                                </a>
+                                            </td>
+                                        
+                                        </tr>
+                                        <% } %>
+                                      
+                                         <% }%>
+
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+
+
+
+
+<%- include( '../includes/admin_includes/admin_end.ejs' ) %>
