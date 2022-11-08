@@ -115,6 +115,21 @@ router.post('/edit-Footer',middleware.adminsessioncheck,adminController.editFoot
 router.get('/Messages',middleware.adminsessioncheck,adminController.Messages)
 
 //get one message
-router.get('/getOneMessage/:id',adminController.getOneMessage)
+router.get('/getOneMessage/:id',middleware.adminsessioncheck,adminController.getOneMessage)
+
+///post edit-contact
+router.post('/edit-contact',middleware.adminsessioncheck,adminController.editcontact)
+
+//err page
+router.get('/err',adminController.errpage)
+/* For Admin Error Page */
+router.use(function (req, res, next) {
+    next(createError(404));
+  });
+  
+  router.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('admin_pages/admin-404');
+  });
 
 module.exports = router;

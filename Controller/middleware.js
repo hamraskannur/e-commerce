@@ -15,7 +15,6 @@ exports.verifyactive = (req, res, next) => {
                 next()
             }
         } else {
-            console.log("no user for blocking");
             res.redirect('/login')
         }
     })

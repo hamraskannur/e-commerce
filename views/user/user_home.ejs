@@ -5,7 +5,11 @@
 <section class="section-slide">
 	<div class="wrap-slick1">
 		<div class="slick1">
-			<% for( b of banner[0].items ) { %>
+			<% for( i=0 ;i< banner.length;i++) { %>
+
+				<% if( banner[i].homepagefirst =="true" ) { %>
+
+			<% for( b of banner[i].items ) { %>
 				<div class="item-slick1" style="background-image: url(/banner_image/<%=b.image%>);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
@@ -30,7 +34,9 @@
 						</div>
 					</div>
 				</div>
-				
+				<% } %>
+				<% } %>
+
 				<% } %>
 		</div>
 	</div>
@@ -42,7 +48,9 @@
 
 	<div class="container">
 		<div class="row">
-			<% for( c of banner[1].items ) { %>
+			<% for( i=0 ;i< banner.length;i++) { %>
+			<% if( banner[i].homepagefirst =="false" ) { %>
+			<% for( c of banner[i].items ) { %>
 
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<div class="block1 wrap-pic-w">
@@ -69,7 +77,9 @@
 					</div>
 				</div>
 				<% } %>
+				<% } %>
 
+				<% } %>
 		</div>
 	</div>
 </div>
@@ -89,25 +99,27 @@
 				<a href="/" class=" stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1">
 					All Products
 				</a>
-				<a onclick="getCategory('Electronics')"
+				<a onclick="getCategory('IPHONE')"
+				
 					class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Electronics
+					iPhone
 				</a>
-				<a onclick="getCategory('Books')"
+				<a onclick="getCategory('IPAD')"
+				
 					class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Books
+					iPad
 				</a>
-				<a onclick="getCategory('Phone')"
+				<a onclick="getCategory('WATCH')"
 					class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Phone
+					Watch
 				</a>
-				<a onclick="getCategory('Men dress')"
+				<a onclick="getCategory('AIRTAG')"
 					class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Men dress
+					AirTag
 				</a>
-				<a onclick="getCategory('Kids dress')"
+				<a onclick="getCategory('HEADPHONES')"
 					class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Kids dress
+					Headphones 
 				</a>
 				
 			</div>
@@ -175,17 +187,7 @@
 								</a>
 							</li>
 
-							<li class="p-b-6">
-								<a onclick="pricesort('0','500')" class="filter-link stext-106 trans-04">
-									<i class="bi bi-currency-rupee"></i>0 - <i class="bi bi-currency-rupee"></i>500
-								</a>
-							</li>
-
-							<li class="p-b-6">
-								<a onclick="pricesort('500','1000')" class="filter-link stext-106 trans-04">
-									<i class="bi bi-currency-rupee"></i>500 - <i class="bi bi-currency-rupee"></i>1000
-								</a>
-							</li>
+						
 
 							<li class="p-b-6">
 								<a onclick="pricesort('1000','1500')" class="filter-link stext-106 trans-04">
@@ -202,6 +204,17 @@
 							<li class="p-b-6">
 								<a onclick="pricesort('2000','5000')" class="filter-link stext-106 trans-04">
 									<i class="bi bi-currency-rupee"></i>2000 - <i class="bi bi-currency-rupee"></i>5000
+								</a>
+							</li>
+							<li class="p-b-6">
+								<a onclick="pricesort('5000','6000')" class="filter-link stext-106 trans-04">
+									<i class="bi bi-currency-rupee"></i>5000 - <i class="bi bi-currency-rupee"></i>6000
+								</a>
+							</li>
+
+							<li class="p-b-6">
+								<a onclick="pricesort('6000','7000')" class="filter-link stext-106 trans-04">
+									<i class="bi bi-currency-rupee"></i>6000 - <i class="bi bi-currency-rupee"></i>7000
 								</a>
 							</li>
 						</ul>
@@ -224,7 +237,7 @@
 
 								<div class="block2">
 									<div class="block2-pic hov-img0">
-										<img href="/viewsOneproduct/<%=p._id%>" src="/product-images/<%=p.Images[0]%>" alt="IMG-PRODUCT">
+										<a href="/viewsOneproduct/<%=p._id%>"><img style="height: 25rem; width: 20rem;" src="/product-images/<%=p.Images[0]%>" alt="IMG-PRODUCT"></a>
 
 										<button onclick="Addtocart('<%=p._id%>')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 ">
 											Add to cart
@@ -276,9 +289,47 @@
 		</div>
 
 		<!-- Load more -->
-	
+		<div class="flex-c-m flex-w w-full p-t-45">
+			
+			<nav aria-label="Page navigation example">
+
+				<ul class="pagination">
+					<% if(currentpage!=1){%>
+
+				  <li class="page-item">
+					<a class="page-link" href="/page/<%=Number(currentpage)-1%>" aria-label="Previous">
+					  <span aria-hidden="true">&laquo;</span>
+					  <span class="sr-only">Previous</span>
+					</a> 
+				  </li>
+				  <% }%>
+
+				  <% for( i=1; i <= pages ; i++){%>
+					<% if(i==currentpage){%>
+						<li class="page-item active "><a class="page-link" href="/page/<%=i%>"><%=i%></a></li>
+
+						<%}else{%>
+							<li class="page-item "><a class="page-link" href="/page/<%=i%>"><%=i%></a></li>
+
+					<% }%>
+
+				  <% }%>
+				  <% if(currentpage!=pages){%>
+
+				  <li class="page-item">
+					<a class="page-link" href="/page/<%=Number(currentpage)+1%>" aria-label="Next">
+					  <span aria-hidden="true">&raquo;</span>
+					  <span class="sr-only">Next</span>
+					</a>
+				  </li>
+				  <% }%>
+
+				</ul>
+			  </nav>
+		</div>
 	</div>
 </section>
+
 
 
 <!-- Back to top -->

@@ -28,27 +28,25 @@ var instance = new Razorpay({
 
 module.exports = {
     checkactive: (userId) => {
-        try {
-
-
             return new Promise(async (resolve, reject) => {
+                try {
                 let user = await user_collection.find({ Email: userId.Email })
-                resolve((user))
-
+                resolve(user)
+            } catch (err) {
+                resolve(err)
+    
+            }
+    
             })
-        } catch (err) {
-            console.log(err);
-            location.href = '/err'
-
-        }
-
+     
 
     },
     DoSignup: (UserData) => {
-        try {
+
 
 
             return new Promise(async (resolve, reject) => {
+                try {
                 let user = await user_collection.find({ Email: UserData.Email })
                 let Status = {
                     user: null,
@@ -82,17 +80,18 @@ module.exports = {
                     Status.userExist = true
                     resolve(Status)
                 }
+            } catch (err) {
+                resolve(err)
+    
+            }
             })
-        } catch (err) {
-            console.log(err);
-            location.href = '/err'
-
-        }
+       
     },
     Dologin: (UserData) => {
-        try {
 
             return new Promise(async (resolve, reject) => {
+                try {
+
                 let response = {
                     user: null,
                     Status: null,
@@ -106,7 +105,6 @@ module.exports = {
                                 bcrypt.compare(UserData.loginPassword, findUser[0].Password, function (error, isMatch) {
                                     if (error) {
                                         response.Status = false
-                                        console.log(error);
                                         resolve(response)
                                     } else if (isMatch) {
                                         let user = {
@@ -139,26 +137,27 @@ module.exports = {
                     }
 
                 }
-
+            } catch (err) {
+                resolve(err)
+    
+            }
             })
-        } catch (err) {
-            console.log(err);
-            location.href = '/err'
-
-        }
+   
     },
     getcartproduct: (userId) => {
-        try {
 
             return new Promise(async (resolve, reject) => {
+                try {
+
                 let cart = await cart_Collection.findOne({ userId });
                 cartisnot = false
                 resolve(cart)
+            } catch (err) {
+                resolve(err)
 
+            }
             })
-        } catch (err) {
-            console.log(err);
-        }
+        
     }, AddToCart: (productId, quantity, userId) => {
         let Status = {
             Addproduct: false
@@ -208,8 +207,7 @@ module.exports = {
                 }
             }
             catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
 
@@ -267,8 +265,7 @@ module.exports = {
                 }
             }
             catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
 
@@ -298,14 +295,13 @@ module.exports = {
                     cart.bill = Number(cart.bill) + Number(price);
 
                     cart.save();
-                    resolve()
+                    resolve({Status:true})
                 }
                 else {
-                    console.log("no products");
+                    resolve({Status:true})
                 }
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -334,14 +330,14 @@ module.exports = {
                     cart.bill = Number(cart.bill) - Number(price);
 
                     cart.save();
-                    resolve()
+                    resolve({Status:true})
                 }
                 else {
-                    console.log("no products");
+                    resolve({Status:true})
+
                 }
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -359,11 +355,10 @@ module.exports = {
                     cart.items.splice(itemIndex, 1);
                 }
                 cart.save();
-                resolve()
+                resolve({Status:true})
             }
             catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
             }
 
 
@@ -412,8 +407,7 @@ module.exports = {
                 }
             }
             catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
 
@@ -439,8 +433,7 @@ module.exports = {
                     resolve(response)
                 }
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -455,11 +448,10 @@ module.exports = {
                     wishlist.items.splice(itemIndex, 1);
                 }
                 wishlist = await wishlist.save();
-                resolve()
+                resolve({Status:true})
             }
             catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
 
@@ -517,10 +509,9 @@ module.exports = {
                         Payment: addres.gridRadios
                     }
                 })
-                resolve()
+                resolve({Status:true})
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -540,8 +531,7 @@ module.exports = {
                     resolve(response)
                 }
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -641,8 +631,7 @@ module.exports = {
                     resolve(response)
                 }
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -663,8 +652,7 @@ module.exports = {
                     resolve(order)
                 })
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -676,8 +664,7 @@ module.exports = {
                 let adress = await address_collection.find({ userId: userId })
                 resolve(adress)
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -694,8 +681,7 @@ module.exports = {
 
                 resolve(order)
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -713,8 +699,7 @@ module.exports = {
                     reject()
                 }
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -732,11 +717,10 @@ module.exports = {
                         order.orders[itemIndex] = productItem;
                         order.save();
                     }
-                    resolve()
+                    resolve({Status:true})
                 }
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -758,8 +742,7 @@ module.exports = {
                 }
                 resolve(cart)
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -784,8 +767,7 @@ module.exports = {
                 }
                 resolve(wishlists)
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -798,8 +780,7 @@ module.exports = {
                 user = user_collection.findOne({ Email: user });
                 resolve(user)
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -807,16 +788,16 @@ module.exports = {
     ordersProductlist: (userID, orderId) => {
         return new Promise(async (resolve, reject) => {
             try {
-                let order = await order_collection.findOne({ user });
+                let order = await order_collection.findOne({userId: userID });
                 let itemIndex = order.orders.findIndex(p => p._id == orderId);
+
                 if (itemIndex > -1) {
                     let productItem = order.orders[itemIndex];
                     resolve(productItem)
 
                 }
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -832,10 +813,9 @@ module.exports = {
                     order.orders[itemIndex] = productItem;
                     order.save();
                 }
-                resolve()
+                resolve({Status:true})
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -911,7 +891,6 @@ module.exports = {
                         }
 
                     } else {
-                        console.log(err);
                         response.Message = "! Coupon code wrong!"
                         response.Status = false
                         resolve(response)
@@ -919,8 +898,7 @@ module.exports = {
                     }
                 })
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -932,10 +910,9 @@ module.exports = {
                 user.Coupons.push({ couponId: couponId })
                 user.save().then((data) => {
                 })
-                resolve()
+                resolve({Status:true})
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -946,8 +923,7 @@ module.exports = {
                 let banner = await banner_collection.find()
                 resolve(banner)
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -958,8 +934,7 @@ module.exports = {
                 product = await Product_collection.find({ price: { $gt: first, $lt: second } })
                 resolve(product)
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -973,8 +948,7 @@ module.exports = {
 
                 if (adressIndex > 0) {
                     addres = useraddress[0].adress[adressIndex]
-                    console.log(addres);
-                    console.log(userId);
+               
                     await user_collection.findByIdAndUpdate(userId, {
                         userdetails: {
                             Name: addres.Name,
@@ -993,8 +967,7 @@ module.exports = {
 
                 }
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
@@ -1002,21 +975,209 @@ module.exports = {
     messageuser: (Message) => {
         return new Promise(async (resolve, reject) => {
             try {
+
                 let date = new Date().toJSON().slice(0, 10);
                 const message = new message_collection({
-                    Email: Message.email,
+                    Email: Message.messageEmail,
                     message: Message.message,
                     date: date
                 })
                 message.save()
                 resolve()
             } catch (err) {
-                console.log(err);
-                location.href = '/err'
+                resolve(err)
 
             }
         })
 
+    },
+    deleteAddress: (AddressId, userId) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let address = await address_collection.findOne({ userId: userId });
+                let itemIndex = address.adress.findIndex(p => p._id == AddressId);
+                if (itemIndex > -1) {
+                    address.adress.splice(itemIndex, 1);
+                }
+                address = await address.save();
+                resolve({Status:true})
+            }
+            catch (err) {
+                resolve(err)
+
+            }
+
+
+
+        })
+    },
+    editAddress: (AddressId, userId) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let address = await address_collection.findOne({ userId: userId });
+                let itemIndex = address.adress.findIndex(p => p._id == AddressId);
+                if (itemIndex > -1) {
+                    resolve(address.adress[itemIndex])
+
+                }
+            }
+            catch (err) {
+                resolve(err)
+
+            }
+
+
+
+        })
+    },
+    postEditAddress: (Address, AddressId, userId) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let address = await address_collection.findOne({ userId: userId });
+                let itemIndex = address.adress.findIndex(p => p._id == AddressId);
+                if (itemIndex > -1) {
+                    let addresstItem = address.adress[itemIndex];
+                    addresstItem.Name = Address.Name
+                    addresstItem.PhoneNo = Address.phoneNo
+                    addresstItem.Address = Address.Address
+                    addresstItem.city = Address.city
+                    addresstItem.state = Address.State
+                    addresstItem.localAddres = Address.LocalAddress
+                    addresstItem.zip = Address.Zip
+                    addresstItem.Payment = Address.gridRadios
+                    address.adress[itemIndex] = addresstItem;
+                    address.save();
+                    resolve()
+                }
+            }
+            catch (err) {
+                resolve(err)
+
+            }
+
+
+
+        })
+    },
+    homepages: (pegeNo, perpage) => {
+
+
+        return new Promise(async (resolve, reject) => {
+            try {
+            let product = {
+                productcount: 0,
+                products: null
+            }
+            product.productcount = await Product_collection.find().count()
+            product.products = await Product_collection.find().skip((pegeNo - 1) * perpage).limit(perpage)
+            resolve(product)
+        }
+        catch (err) {
+            resolve(err)
+
+        }
+        })
+
+    },
+    forgotPassword: (useremail) => {
+  
+
+        return new Promise(async (resolve, reject) => {
+            try {
+            let response = {
+                Status: false,
+                data: null
+            }
+            let findUser = await user_collection.find({ Email: useremail.email })
+            if (findUser.length > 0) {
+                response.Status = true
+                response.data = findUser[0].PhoneNo
+                resolve(response)
+            } else {
+                response.Status = false
+                resolve(response)
+            }
+        }
+        catch (err) {
+            resolve(err)
+
+        }
+        })
+    },
+    updatePassword: (Password, email) => {
+
+        return new Promise(async (resolve, reject) => {
+            try {
+            Password.Password = await bcrypt.hash(Password.Password, 10)
+   
+            user_collection.updateOne({Email:email},{
+                $set: {
+                    Password:Password.Password
+                }
+            }).then((data)=>{
+             if(data){
+                resolve({Status:true })
+
+             }else{
+                resolve({Status:false })
+             }
+             
+            })
+        }
+        catch (err) {
+            resolve(err)
+
+
+        }
+        })
+    },
+    editMydetails:(userId)=>{
+
+        return new Promise(async (resolve, reject) =>  {
+            try { 
+
+                let findUser = await user_collection.find({ _id: userId })
+                if(findUser.length > 0){
+                    resolve(findUser)
+
+                }else{
+                    resolve(err)
+                }
+        }
+        catch (err) {
+            resolve(err)
+
+
+        }
+    })
+
+    },
+    postEditMyDetails:(userdetails,userId)=>{
+        return new Promise(async (resolve, reject) => {
+            try {
+   
+            user_collection.updateOne({_id:userId},{
+                $set: {
+                    Name:userdetails.Name,
+                    Email:userdetails.Email
+
+                }
+            }).then((data)=>{
+             if(data){
+                resolve({Status:true })
+
+             }else{
+                resolve({Status:false })
+             }
+             
+            })
+        }
+        catch (err) {
+            resolve(err)
+
+
+        }
+        })
     }
 }
 

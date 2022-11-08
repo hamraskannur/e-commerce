@@ -104,7 +104,6 @@
 <script>
 
 	function addwishlist(product, productName) {
-		console.log(product);
 		$.ajax({
 			url: '/addtowishlist/' + product,
 			method: 'get',
@@ -138,7 +137,6 @@
 			success: (response) => {
 				if (response.Status) {
 					let quantity = document.getElementById(productID + 'quantity').value
-					console.log(quantity);
 					// let extQuantity = Number(quantity) + 1
 					let productTotalPrice = document.getElementById(productID + 'totalPrice').innerHTML
 					let unitPrice = document.getElementById(productID + 'unitPrice').innerHTML
@@ -152,6 +150,8 @@
 	}
 
 	function cartquantitydec(productID) {
+		let quantity = document.getElementById(productID + 'quantity').value
+        
 		$.ajax({
 			url: '/cartquantitydec/' + productID,
 			method: 'post',
@@ -171,7 +171,6 @@
 
 	}
 	function Addtocartoneprod(productID) {
-		swal("Good job!", "You clicked the button!", "success");
 		let totalcartcount = document.getElementById("oneproductquantity").value
 		$.ajax({
 			url: '/addproducts/' + productID,
@@ -182,8 +181,12 @@
 			method: 'post',
 			success: (response) => {
 				if (response.Status) {
+					swal("product Added in cart", "", "success");
 					let totalcartcount = document.getElementById("cartcount").innerHTML
 					document.getElementById("cartcount").innerHTML = Number(totalcartcount) + 1;
+
+				}else{
+					swal("sorry!", "please login");
 
 				}
 			}
@@ -197,7 +200,7 @@
 			method: 'get',
 			success: (response) => {
 				if (response.Status) {
-					swal("Good job!", "product Added in cart", "success");
+					swal("product Added in cart", "", "success");
 					let totalcartcount = document.getElementById("cartcount").innerHTML
 					document.getElementById("cartcount").innerHTML = Number(totalcartcount) + 1;
 
@@ -325,7 +328,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;" alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -359,7 +362,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;" alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -417,7 +420,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;" alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -451,7 +454,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;" alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -493,7 +496,7 @@
 		let productId = document.getElementById("productId")
 		let html = null
 		$.ajax({
-			url: '/getcategory/' + CategoryID,
+			url: '/getcategory/'+CategoryID,
 			method: 'get',
 			success: (response) => {
 
@@ -504,7 +507,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;"  alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -538,7 +541,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;"  alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -658,12 +661,13 @@
 								      	<span id="totalbill"  class="mtext-110 cl2"> ${parseInt(Number(totalbill))}-</span>
 							     	</div>
 									<div >
-										<span   style="margin-left:2.5rem  ;" class="mtext-110 cl2"> ${coupon[0].discount}%</span>
+										
+										<span   style="margin-left:1.5rem  ;" class="mtext-110 cl2"> ${coupon[0].discount}%</span>
 									</div>
 									<hr style="color: black; ">
 	
 									<div >
-										<span   style="margin-left:3rem ;" class="mtext-110 cl2">${parseInt(Number(totalbill) - (Number(totalbill) * Number(coupon[0].discount)) / 100)} </span>
+										<span   style="margin-left:0.5rem ;" class="mtext-110 cl2">${parseInt(Number(totalbill) - (Number(totalbill) * Number(coupon[0].discount)) / 100)} </span>
 									</div>
 									<hr style="color: black; ">
 								</div>`
@@ -682,7 +686,6 @@
 	function getlogin() {
 		let loginPassword = document.getElementById("loginPassword").value
 		let loginEmail = document.getElementById("loginEmail").value
-
 		$.ajax({
 			url: '/login',
 			data: {
@@ -704,7 +707,6 @@
 	}
 
 
-
 	function pricesort(first, second) {
 		let hi = document.getElementById("hi")
 		let html = null
@@ -724,7 +726,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;" alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -758,7 +760,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;" alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -791,7 +793,6 @@
 
 				})
 				hi.innerHTML = html
-				console.log("last", hi.innerHTML);
 			}
 
 		})
@@ -802,7 +803,8 @@
 
 
 	function mysearch() {
-		input = document.getElementById("mysearchInput").value
+	 	input = document.getElementById("mysearchInput").value
+		input=input.toUpperCase()
 		let hi = document.getElementById("hi")
 		let html = null
 		$.ajax({
@@ -817,7 +819,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;"  alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -851,7 +853,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;" alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -884,7 +886,6 @@
 
 				})
 				hi.innerHTML = html
-				console.log("last", hi.innerHTML);
 			}
 
 		})
@@ -896,7 +897,6 @@
 	function myProductsearch() {
 		input = document.getElementById("myproductsearch").value
 		productId = document.getElementById("productId")
-		console.log(productId);
 		let html = null
 		$.ajax({
 			url: '/MySearch/' + input,
@@ -910,7 +910,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;"  alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -944,7 +944,7 @@
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}"  alt="IMG-PRODUCT">
+							<img href="/viewsOneproduct/${item._id}" src="/product-images/${item.Images[0]}" style="height: 25rem; width: 20rem;"  alt="IMG-PRODUCT">
 							
 							<button onclick="Addtocart('${item._id}')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15  trans-04 "  >
 								Add to cart
@@ -983,18 +983,123 @@
 	}
 	function postOtp() {
 		otpnumber = document.getElementById("otpinput").value
-		console.log(otpnumber);
 		$.ajax({
 			url: '/postotp',
-			data:{
+			data: {
 				otpnumber
 			},
 			method: 'post',
-			success: (response) => { 
+			success: (response) => {
 
 			}
 
 		})
+	}
+	function deleteAddress(AddressId) {
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "DELETE YOUR CATEGORY",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+			if (result.isConfirmed) {
+
+				$.ajax({
+					url: '/deleteAddress/' + AddressId,
+					method: 'get',
+					success: (response) => {
+						if (response.Status) {
+							swal("DELETE YOUR ADDRESS", {
+								icon: "success",
+							}).then(() => {
+								location.reload()
+							})
+						} else {
+							Swal.fire(
+								'your address safe',
+							)
+						}
+					}
+
+				})
+			} else {
+				Swal.fire(
+					'your address safe',
+				)
+			}
+
+		})
+	}
+
+	function sentMessage() {
+		messageEmail = document.getElementById('messageEmail').value
+		message = document.getElementById('message').value
+
+		if (messageEmail) {
+			if (message) {
+				$.ajax({
+					url: '/messageuser',
+					data: {
+						messageEmail,
+						message
+					},
+					method: 'post',
+					success: (response) => {
+						if (response.Status) {
+							swal("SUCCESS FULLY SENTED YOUR MESSAGE", {
+								icon: "success",
+							}).then(() => {
+								location.reload()
+							})
+						}
+					}
+				})
+			} else {
+
+				swal("PLEASE FILL YOUR MESSAGE", {
+					icon: "warning",
+				})
+			}
+		} else {
+
+			swal("PLEASE FILL YOUR EMAIL", {
+				icon: "warning",
+			})
+		}
+	}
+
+	async function forgotPassword() {
+		const { value: email } = await Swal.fire({
+			title: 'Enter your email address',
+			input: 'email',
+			inputLabel: '',
+			inputPlaceholder: 'Enter your email address'
+		})
+
+		if (email) {
+			$.ajax({
+				url: '/forgotPassword',
+				data: {
+					email
+				},
+				method: 'post',
+				success: (response) => {
+					if (response.Status) {
+						location.href = '/getopt/'+response.data
+					} else {
+						Swal.fire({
+							icon: 'error',
+							title: 'your entered email wrong!',
+							text: 'Try Again',
+						})
+					}
+				}
+			})
+
+		}
 	}
 </script>
 

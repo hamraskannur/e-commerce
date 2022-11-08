@@ -20,7 +20,9 @@
 					
 				</ul>
 			</div>
-
+			<% for( i=0 ;i< banner.length;i++) { %>
+				<% if( banner[i].bannerId =="Footer" ) { %>
+	
 			<div class="col-sm-6 col-lg-3 p-b-50">
 				<h4 class="stext-301 cl0 p-b-30">
 					Help
@@ -31,20 +33,20 @@
 					
 					<li class="p-b-10">
 						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							<%=banner[2].help1%>
+							<%=banner[i].help1%>
 						</a>
 					</li>
 					<li class="p-b-10">
 						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							<%=banner[2].help2%>
+							<%=banner[i].help2%>
 						</a>
 					</li><li class="p-b-10">
 						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							<%=banner[2].help3%>
+							<%=banner[i].help3%>
 						</a>
 					</li><li class="p-b-10">
 						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							<%=banner[2].help4%>
+							<%=banner[i].help4%>
 						</a>
 					</li>
 				</ul>
@@ -56,22 +58,24 @@
 				</h4>
 
 				<p class="stext-107 cl7 size-201">
-					Phone No:  <%=banner[2].PhoneNo%>
+					Phone No:  <%=banner[i].PhoneNo%>
 				</p>
 
 				<div class="p-t-27">
-					<a href="<%=banner[2].Facebook%>" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+					<a href="<%=banner[i].Facebook%>" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 						<i class="fa fa-facebook"></i>
 					</a>
 
-					<a href="<%=banner[2].instagram%>" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+					<a href="<%=banner[i].instagram%>" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 						<i class="fa fa-instagram"></i>
 					</a>
 
 				
 				</div>
 			</div>
+			<% } %>
 
+			<% } %>
 			
 		</div>
 

@@ -24,7 +24,7 @@
 			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 				<div class="m-l-25 m-r--38 m-lr-0-xl">
 					<div class="wrap-table-shopping-cart">
-						<table class="table-shopping-cart">
+						<table  class="table-shopping-cart">
 							<tr class="table_head">
 								<th class="column-1">Product</th>
 								<th class="column-2"></th>
@@ -51,18 +51,19 @@
 										<td class="column-3" id="<%=element.productId%>unitPrice"><%=element.price%></td>
 										<td class="column-4">
 											<div class="wrap-num-product flex-w m-l-auto m-r-0">
-												<button type="button"
+
+												<button type="button" id="<%=element.productId%>inc"
 													onclick="cartquantitydec('<%=element.productId%>')"
 													class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 													<i class="fs-16 zmdi zmdi-minus"></i>
 												</button>
+
 												<input class="mtext-104 cl3 txt-center num-product" id="<%=element.productId%>quantity"
-													type="number" name="num-product1" value="<%=element.quantity%>">
+													type="number" name="num-product1" value="<%=element.quantity%>" readonly>
 
 												<button type="button"
 													onclick="cartquantityinc('<%=element.productId%>')"
 													class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-
 													<i class="fs-16 zmdi zmdi-plus"></i>
 												</button>
 											</div>

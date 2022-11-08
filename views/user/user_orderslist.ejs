@@ -32,15 +32,13 @@
          
               <div class="col-md-2 text-center  justify-content-center align-items-center">
                 <% if( element.orderStatus === "canceled"  ) { %>
-                    <a href="/getOrdersProduct/<%=element._id%>"  type="button" class="btn btn-primary mt-3 text-white mt-3"><i class="icon-cart-add mr-2"></i>produts</a>
-                    <a href="/cancel-order/<%=element._id%>" type="button" class="btn btn-secondary mt-2 text-white mt-2"><i class="icon-cart-add mr-2"></i>Reorder</a>
+                    <a href="/getOrdersProduct/<%=element._id%>"  type="button" class="btn btn-primary mt-3 text-white mt-3"><i class="icon-cart-add mr-2"></i>product</a>
      
                 <%}else if(element.orderStatus === "pending"  ){%>
-                    <a href="/getOrdersProduct/<%=element._id%>"  type="button" class="btn btn-primary mt-3 text-white mt-3"><i class="icon-cart-add mr-2"></i>produts</a>
-                    <a href="/cancel-order/<%=element._id%>" type="button" class="btn btn-secondary mt-2 text-white mt-2"><i class="icon-cart-add mr-2"></i>Reorder</a>
+                    <a href="/getOrdersProduct/<%=element._id%>"  type="button" class="btn btn-primary mt-3 text-white mt-3"><i class="icon-cart-add mr-2"></i>product</a>
                 
                     <%}else{%>
-                        <a href="/getOrdersProduct/<%=element._id%>"  type="button" class="btn btn-primary mt-3 text-white mt-3"><i class="icon-cart-add mr-2"></i>produts</a>
+                        <a href="/getOrdersProduct/<%=element._id%>"  type="button" class="btn btn-primary mt-3 text-white mt-3"><i class="icon-cart-add mr-2"></i>product</a>
                         <button onclick="cancelOrder('<%=element._id%>')" type="button" class="btn btn-danger mt-2 text-white mt-2"><i class="icon-cart-add mr-2"></i>Cancel Order</button>
          
                 <% } %>

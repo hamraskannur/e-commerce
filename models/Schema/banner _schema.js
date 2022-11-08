@@ -65,6 +65,22 @@ const bannerSchema = new Schema({
     bannerId:{
         type: String   
 
+    },
+    map:{
+        type: String   
+
+    },
+    email:{
+        type: String   
+
+    },
+    address:{
+        type: String   
+
+    },
+    homepagefirst:{
+        type: String   
+
     }
 })
 

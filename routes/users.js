@@ -115,5 +115,32 @@ router.post('/messageuser',UserController.messageuser)
 router.get('/MySearch/:input',UserController.MySearch)
 
 router.get('/err',UserController.err)
+
+//delete address 
+router.get('/deleteAddress/:id',middleware.sessioncheck,middleware.verifyactive,UserController.deleteAddress)
+
+//edit address
+router.route('/editAddress/:id')
+    .get(middleware.sessioncheck,middleware.verifyactive,UserController.editAddress)
+    .post(middleware.sessioncheck,middleware.verifyactive,UserController.postEditAddress)
+//pagenation
+router.get('/page/:page',UserController.homepage)
+router.get('/productpage/:page',UserController.productpage)
+
+//forgot password
+router.post('/forgotPassword',UserController.forgotPassword)
+
+//get otp page for forgotpassword
+router.get('/getopt/:phoneno',UserController.getopt)
+
+router.post('/forgotPasswordotp/:phoneno',UserController.forgotPasswordotp)
+
+router.post('/forgotPasswordpost',UserController.forgotPasswordpost)
+
+router.route('/editMydetails')
+    .get(middleware.sessioncheck,middleware.verifyactive,UserController.editMydetails)
+    .post(middleware.sessioncheck,middleware.verifyactive, UserController.postEditMyDetails)
+
+
 module.exports = router;
 

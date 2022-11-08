@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const db = require('../config/connection')
 const Product_collection = require('../models/Schema/product_Schema')
 const Category_collection = require('../models/Schema/Category_schema')
-
+var fs = require('fs');
+const { promisify } = require('util')
+const unlinkAsync = promisify(fs.unlink)
 const { promiseImpl } = require('ejs');
 const { response } = require('../app');
 
@@ -25,7 +27,7 @@ module.exports = {
                 resolve(data._id)
             })
         } catch (error) {
-            location.href = '/err'
+            resolve(err)
         }
         })
     },   
@@ -38,37 +40,32 @@ module.exports = {
                 if (!err) {
                     resolve(data)
                 } else {
-                    console.log(err);
-                }
-            })
-        } catch (error) {
-            location.href = '/err'
-        }
-
-        })
-    },
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    getOneProductDetails: (productId) => {
-        return new Promise((resolve, reject) => {
-            try {
-                
-          
-            Product_collection.findById(productId, (err, data) => {
-                if (!err) {
-                    resolve(data)
-                } else {
-                    console.log(err);
                     resolve(err)
                 }
             })
         } catch (error) {
-            location.href = '/err'
+            resolve(err)
+        }
+
+        })
+    },
+ 
+
+    getOneProductDetails: (productId) => {
+        return new Promise((resolve, reject) => {
+            try {
+            Product_collection.findById(productId, (err, data) => {
+                if (!err) {
+                    resolve(data)
+                } else {
+                    resolve(err)
+                }
+            })
+        } catch (error) {
+            resolve(err)
         }
         })
     },
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     EditProduct: (product, ProductId) => {
         return new Promise(async(resolve, reject) => {
             try {
@@ -89,27 +86,26 @@ module.exports = {
                 if (data) {
                     resolve(oldproduct.Images)
                 } else {
-                    console.log(err);
                     resolve()
                 }
             })
         } catch (error) {
-            location.href = '/err'
+            resolve(err)
         }
         })
     },
-    //////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////
+ 
     DeleteProduct: (ProductId) => {
-        return new Promise((resolve, reject) => {
+        return new Promise(async(resolve, reject) => {
             let response = {
-                Status: null
+                Status: null,
+                Image:null
             }
             try {
-                
-         
+                product=await Product_collection.findOne({_id: ProductId })
             Product_collection.findByIdAndDelete({ _id: ProductId }, (err, data) => {
                 if (!err) {
+                    response.Image=product.Images
                     response.Status = true
                     resolve(response)
                 } else {
@@ -118,16 +114,14 @@ module.exports = {
                 }
             })
         } catch (error) {
-            location.href = '/err'
+            resolve(err)
         }
         })
 
     }
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
   
    ,
     Categoryproducts: (category) => {
-        console.log(category);
         return new Promise((resolve, reject) => {
             let response = {
                 Status: false,
@@ -150,13 +144,12 @@ module.exports = {
 
                 } else {
                     response.Status = false
-                    console.log(err);
                     resolve(response)
 
                 }
             })
         } catch (error) {
-            location.href = '/err'
+            resolve(err)
         }
         })
     },
@@ -169,8 +162,9 @@ module.exports = {
          
             Category= await Category_collection.find({Category:CategoryName.newcategory})
             if(Category.length==0){
+                newCategory= CategoryName.newcategory.toUpperCase()
                 const NewCategory = new Category_collection({
-                    Category: CategoryName.newcategory
+                    Category:newCategory
                 })
                 NewCategory.save().then((data) => {
                     if(data){
@@ -188,7 +182,7 @@ module.exports = {
             }
           
         } catch (error) {
-            location.href = '/err'
+            resolve(err)
         }
         })
     },
@@ -201,11 +195,11 @@ module.exports = {
                 if (!err) {
                     resolve(data)
                 } else {
-                    console.log(err);
+                    resolve(err)
                 }
             })
         } catch (error) {
-            location.href = '/err'
+            resolve(err)
         }
         })
     },
@@ -220,7 +214,7 @@ module.exports = {
            let newCategory=await Product_collection.find({category:Category})
            length= newCategory.length 
            if(length === 0){
-            Category_collection.deleteOne({ category: Category }, (err, data) => {
+            Category_collection.deleteOne({Category:Category }, (err, data) => {
                 if(data){
                     response.Status=true
                     resolve(response)
@@ -237,7 +231,7 @@ module.exports = {
            }
 
         } catch (error) {
-            location.href = '/err'
+            resolve(err)
         }
         })
     },
@@ -258,12 +252,11 @@ module.exports = {
                 if (!err) {
                     resolve()
                 } else {
-                    console.log(err);
                     resolve()
                 }
             })
         } catch (error) {
-            location.href = '/err'
+            resolve(err)
         }
         })
     },
@@ -278,7 +271,7 @@ module.exports = {
    
         })
     } catch (error) {
-        location.href = '/err'
+        resolve(err)
     }
     }
 }

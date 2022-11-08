@@ -25,8 +25,11 @@
   
               <!-- Checkbox -->
               
-              <div id="loginerr"><%=loginErr%></div>
+              <div class="text-danger" id="loginerr"><%=loginErr%></div>
+              <div class="text-success" id="loginerr"><%=forgotPassword%></div>
+              <div class="text-danger" id="loginerr"><%=errforgotPassword%></div>
 
+              <a  onclick="forgotPassword()" style="float: left; color: blue;">Forgot Password?</a>
               <button onclick="getlogin()" id="btn-submit" type="button" class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
   
               <hr class="my-4">

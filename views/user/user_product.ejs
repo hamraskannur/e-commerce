@@ -7,30 +7,29 @@
     <div class="container">
         <div class="flex-w flex-sb-m p-b-52">
             <div class="flex-w flex-l-m filter-tope m-tb-10">
-                <button href="/" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" >
+                <a href="/product" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " >
                     All Products
-                </button>
-            
-				<a onclick="getproductCategory('Electronics')"
-					class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Electronics
-				</a>
-				<a onclick="getproductCategory('Books')"
-					class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Books
-				</a>
-				<a onclick="getproductCategory('Phone')"
-					class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Phone
-				</a>
-				<a onclick="getproductCategory('Men dress')"
-					class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Men dress
-				</a>
-				<a onclick="getproductCategory('Kids dress')"
-					class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Kids dress
-				</a>
+                </a>
+                <a onclick="getproductCategory('IPHONE')"
+                class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                iPhone
+            </a>
+            <a onclick="getproductCategory('IPAD')"
+                class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                iPad
+            </a>
+            <a onclick="getproductCategory('WATCH')"
+                class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                Watch
+            </a>
+            <a onclick="getproductCategory('AIRTAG')"
+                class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                AirTag
+            </a>
+            <a onclick="getproductCategory('HEADPHONES')"
+                class="btn btn stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                Headphones
+            </a>
 
             </div>
 
@@ -93,17 +92,7 @@
                                 </a>
                             </li>
 
-                            <li class="p-b-6">
-                                <a onclick="priceproductsort('0','500')" class="filter-link stext-106 trans-04">
-                                    <i class="bi bi-currency-rupee"></i>0 - <i class="bi bi-currency-rupee"></i>500
-                                </a>
-                            </li>
-
-                            <li class="p-b-6">
-                                <a onclick="priceproductsort('500','1000')" class="filter-link stext-106 trans-04">
-                                    <i class="bi bi-currency-rupee"></i>500 - <i class="bi bi-currency-rupee"></i>1000
-                                </a>
-                            </li>
+                          
 
                             <li class="p-b-6">
                                 <a onclick="priceproductsort('1000','1500')" class="filter-link stext-106 trans-04">
@@ -120,6 +109,17 @@
                             <li class="p-b-6">
                                 <a onclick="priceproductsort('2000','5000')" class="filter-link stext-106 trans-04">
                                     <i class="bi bi-currency-rupee"></i>2000 - <i class="bi bi-currency-rupee"></i>5000
+                                </a>
+                            </li>
+                            <li class="p-b-6">
+                                <a onclick="priceproductsort('0','500')" class="filter-link stext-106 trans-04">
+                                    <i class="bi bi-currency-rupee"></i>5000 - <i class="bi bi-currency-rupee"></i>6000
+                                </a>
+                            </li>
+
+                            <li class="p-b-6">
+                                <a onclick="priceproductsort('500','1000')" class="filter-link stext-106 trans-04">
+                                    <i class="bi bi-currency-rupee"></i>6000 - <i class="bi bi-currency-rupee"></i>7000
                                 </a>
                             </li>
                         </ul>
@@ -141,7 +141,7 @@
                 
                 <div class="block2">
                     <div class="block2-pic hov-img0">
-                        <img src="/product-images/<%=p.Images[0]%>" alt="IMG-PRODUCT">
+                        <a href="/viewsOneproduct/<%=p._id%>"><img style="height: 25rem; width: 20rem;" src="/product-images/<%=p.Images[0]%>" alt="IMG-PRODUCT"></a>
 
                         <button onclick="Addtocart('<%=p._id%>')" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                          Add to Cart
@@ -187,7 +187,44 @@
 
 
         <!-- Load more -->
-     
+        <div class="flex-c-m flex-w w-full p-t-45">
+			
+			<nav aria-label="Page navigation example">
+
+				<ul class="pagination">
+					<% if(currentpage!=1){%>
+
+				  <li class="page-item">
+					<a class="page-link" href="/productpage/<%=Number(currentpage)-1%>" aria-label="Previous">
+					  <span aria-hidden="true">&laquo;</span>
+					  <span class="sr-only">Previous</span>
+					</a> 
+				  </li>
+				  <% }%>
+
+				  <% for( i=1; i <= pages ; i++){%>
+					<% if(i==currentpage){%>
+						<li class="page-item active"><a class="page-link" href="/productpage/<%=i%>"><%=i%></a></li>
+
+						<%}else{%>
+							<li class="page-item"><a class="page-link" href="/productpage/<%=i%>"><%=i%></a></li>
+
+					<% }%>
+
+				  <% }%>
+				  <% if(currentpage!=pages){%>
+
+				  <li class="page-item">
+					<a class="page-link" href="/productpage/<%=Number(currentpage)+1%>" aria-label="Next">
+					  <span aria-hidden="true">&raquo;</span>
+					  <span class="sr-only">Next</span>
+					</a>
+				  </li>
+				  <% }%>
+
+				</ul>
+			  </nav>
+		</div>
     </div>
 </div>
     
