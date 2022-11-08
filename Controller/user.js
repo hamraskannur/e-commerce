@@ -25,7 +25,6 @@ let errforgotPassword = null
 const accountSid = process.env.Twilio_Accountsid;
 const authToken = process.env.Twilio_Authtoken;
 const verifySid = process.env.Twilio_Verifysid;
-
 const client = require('twilio')(accountSid, authToken);
 
 
@@ -42,7 +41,6 @@ exports.UserHome = (req, res, next) => {
             User_Helpers.homepages("1", perpage).then((productdetails) => {
                 products = productdetails.products
                 pages = Math.ceil(productdetails.productcount / perpage)
-
                 Product_Helpers.GetAllCategory().then((Category) => {
                     Categorydetails = Category
                     Categorysub = Category
@@ -54,7 +52,7 @@ exports.UserHome = (req, res, next) => {
                             wishlist = wishlists.userwishlist
                             User_Helpers.getbanner().then((newbanner) => {
                                 banner = newbanner
-                                res.render('user/user_home', { currentpage: 1, pages, login, products, Categorydetails, cartcount, wishlistcount, usercart, banner, Categorysub, wishlist });
+                                res.render('user/user_home', { currentpage: "1", pages, login, products, Categorydetails, cartcount, wishlistcount, usercart, banner, Categorysub, wishlist });
                             })
                         })
                     })
@@ -70,7 +68,7 @@ exports.UserHome = (req, res, next) => {
                     User_Helpers.getbanner().then((newbanner) => {
                         banner = newbanner
 
-                        res.render('user/user_home', { currentpage: 1, pages, login, products, Categorydetails, cartcount, wishlistcount, usercart, banner, Categorysub, wishlist });
+                        res.render('user/user_home', { currentpage: "1", pages, login, products, Categorydetails, cartcount, wishlistcount, usercart, banner, Categorysub, wishlist });
                     })
                 })
             })
