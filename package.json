@@ -11,6 +11,7 @@
     "crypto-js": "^4.1.1",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
+    "easyinvoice": "^2.3.3",
     "ejs": "^3.1.8",
     "express": "~4.16.1",
     "express-session": "^1.17.3",

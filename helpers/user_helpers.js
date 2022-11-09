@@ -28,25 +28,25 @@ var instance = new Razorpay({
 
 module.exports = {
     checkactive: (userId) => {
-            return new Promise(async (resolve, reject) => {
-                try {
+        return new Promise(async (resolve, reject) => {
+            try {
                 let user = await user_collection.find({ Email: userId.Email })
                 resolve(user)
             } catch (err) {
                 resolve(err)
-    
+
             }
-    
-            })
-     
+
+        })
+
 
     },
     DoSignup: (UserData) => {
 
 
 
-            return new Promise(async (resolve, reject) => {
-                try {
+        return new Promise(async (resolve, reject) => {
+            try {
                 let user = await user_collection.find({ Email: UserData.Email })
                 let Status = {
                     user: null,
@@ -82,15 +82,15 @@ module.exports = {
                 }
             } catch (err) {
                 resolve(err)
-    
+
             }
-            })
-       
+        })
+
     },
     Dologin: (UserData) => {
 
-            return new Promise(async (resolve, reject) => {
-                try {
+        return new Promise(async (resolve, reject) => {
+            try {
 
                 let response = {
                     user: null,
@@ -139,15 +139,15 @@ module.exports = {
                 }
             } catch (err) {
                 resolve(err)
-    
+
             }
-            })
-   
+        })
+
     },
     getcartproduct: (userId) => {
 
-            return new Promise(async (resolve, reject) => {
-                try {
+        return new Promise(async (resolve, reject) => {
+            try {
 
                 let cart = await cart_Collection.findOne({ userId });
                 cartisnot = false
@@ -156,8 +156,8 @@ module.exports = {
                 resolve(err)
 
             }
-            })
-        
+        })
+
     }, AddToCart: (productId, quantity, userId) => {
         let Status = {
             Addproduct: false
@@ -295,10 +295,10 @@ module.exports = {
                     cart.bill = Number(cart.bill) + Number(price);
 
                     cart.save();
-                    resolve({Status:true})
+                    resolve({ Status: true })
                 }
                 else {
-                    resolve({Status:true})
+                    resolve({ Status: true })
                 }
             } catch (err) {
                 resolve(err)
@@ -330,10 +330,10 @@ module.exports = {
                     cart.bill = Number(cart.bill) - Number(price);
 
                     cart.save();
-                    resolve({Status:true})
+                    resolve({ Status: true })
                 }
                 else {
-                    resolve({Status:true})
+                    resolve({ Status: true })
 
                 }
             } catch (err) {
@@ -355,7 +355,7 @@ module.exports = {
                     cart.items.splice(itemIndex, 1);
                 }
                 cart.save();
-                resolve({Status:true})
+                resolve({ Status: true })
             }
             catch (err) {
                 resolve(err)
@@ -448,7 +448,7 @@ module.exports = {
                     wishlist.items.splice(itemIndex, 1);
                 }
                 wishlist = await wishlist.save();
-                resolve({Status:true})
+                resolve({ Status: true })
             }
             catch (err) {
                 resolve(err)
@@ -509,7 +509,7 @@ module.exports = {
                         Payment: addres.gridRadios
                     }
                 })
-                resolve({Status:true})
+                resolve({ Status: true })
             } catch (err) {
                 resolve(err)
 
@@ -717,7 +717,7 @@ module.exports = {
                         order.orders[itemIndex] = productItem;
                         order.save();
                     }
-                    resolve({Status:true})
+                    resolve({ Status: true })
                 }
             } catch (err) {
                 resolve(err)
@@ -788,7 +788,7 @@ module.exports = {
     ordersProductlist: (userID, orderId) => {
         return new Promise(async (resolve, reject) => {
             try {
-                let order = await order_collection.findOne({userId: userID });
+                let order = await order_collection.findOne({ userId: userID });
                 let itemIndex = order.orders.findIndex(p => p._id == orderId);
 
                 if (itemIndex > -1) {
@@ -813,7 +813,7 @@ module.exports = {
                     order.orders[itemIndex] = productItem;
                     order.save();
                 }
-                resolve({Status:true})
+                resolve({ Status: true })
             } catch (err) {
                 resolve(err)
 
@@ -910,7 +910,7 @@ module.exports = {
                 user.Coupons.push({ couponId: couponId })
                 user.save().then((data) => {
                 })
-                resolve({Status:true})
+                resolve({ Status: true })
             } catch (err) {
                 resolve(err)
 
@@ -948,7 +948,7 @@ module.exports = {
 
                 if (adressIndex > 0) {
                     addres = useraddress[0].adress[adressIndex]
-               
+
                     await user_collection.findByIdAndUpdate(userId, {
                         userdetails: {
                             Name: addres.Name,
@@ -1000,7 +1000,7 @@ module.exports = {
                     address.adress.splice(itemIndex, 1);
                 }
                 address = await address.save();
-                resolve({Status:true})
+                resolve({ Status: true })
             }
             catch (err) {
                 resolve(err)
@@ -1064,120 +1064,142 @@ module.exports = {
 
         return new Promise(async (resolve, reject) => {
             try {
-            let product = {
-                productcount: 0,
-                products: null
+                let product = {
+                    productcount: 0,
+                    products: null
+                }
+                product.productcount = await Product_collection.find().count()
+                product.products = await Product_collection.find().skip((pegeNo - 1) * perpage).limit(perpage)
+                resolve(product)
             }
-            product.productcount = await Product_collection.find().count()
-            product.products = await Product_collection.find().skip((pegeNo - 1) * perpage).limit(perpage)
-            resolve(product)
-        }
-        catch (err) {
-            resolve(err)
+            catch (err) {
+                resolve(err)
 
-        }
+            }
         })
 
     },
     forgotPassword: (useremail) => {
-  
+
 
         return new Promise(async (resolve, reject) => {
             try {
-            let response = {
-                Status: false,
-                data: null
+                let response = {
+                    Status: false,
+                    data: null
+                }
+                let findUser = await user_collection.find({ Email: useremail.email })
+                if (findUser.length > 0) {
+                    response.Status = true
+                    response.data = findUser[0].PhoneNo
+                    resolve(response)
+                } else {
+                    response.Status = false
+                    resolve(response)
+                }
             }
-            let findUser = await user_collection.find({ Email: useremail.email })
-            if (findUser.length > 0) {
-                response.Status = true
-                response.data = findUser[0].PhoneNo
-                resolve(response)
-            } else {
-                response.Status = false
-                resolve(response)
-            }
-        }
-        catch (err) {
-            resolve(err)
+            catch (err) {
+                resolve(err)
 
-        }
+            }
         })
     },
     updatePassword: (Password, email) => {
 
         return new Promise(async (resolve, reject) => {
             try {
-            Password.Password = await bcrypt.hash(Password.Password, 10)
-   
-            user_collection.updateOne({Email:email},{
-                $set: {
-                    Password:Password.Password
-                }
-            }).then((data)=>{
-             if(data){
-                resolve({Status:true })
+                Password.Password = await bcrypt.hash(Password.Password, 10)
 
-             }else{
-                resolve({Status:false })
-             }
-             
-            })
-        }
-        catch (err) {
-            resolve(err)
+                user_collection.updateOne({ Email: email }, {
+                    $set: {
+                        Password: Password.Password
+                    }
+                }).then((data) => {
+                    if (data) {
+                        resolve({ Status: true })
+
+                    } else {
+                        resolve({ Status: false })
+                    }
+
+                })
+            }
+            catch (err) {
+                resolve(err)
 
 
-        }
+            }
         })
     },
-    editMydetails:(userId)=>{
+    editMydetails: (userId) => {
 
-        return new Promise(async (resolve, reject) =>  {
-            try { 
-
-                let findUser = await user_collection.find({ _id: userId })
-                if(findUser.length > 0){
-                    resolve(findUser)
-
-                }else{
-                    resolve(err)
-                }
-        }
-        catch (err) {
-            resolve(err)
-
-
-        }
-    })
-
-    },
-    postEditMyDetails:(userdetails,userId)=>{
         return new Promise(async (resolve, reject) => {
             try {
-   
-            user_collection.updateOne({_id:userId},{
-                $set: {
-                    Name:userdetails.Name,
-                    Email:userdetails.Email
 
+                let findUser = await user_collection.find({ _id: userId })
+                if (findUser.length > 0) {
+                    resolve(findUser)
+
+                } else {
+                    resolve(err)
                 }
-            }).then((data)=>{
-             if(data){
-                resolve({Status:true })
-
-             }else{
-                resolve({Status:false })
-             }
-             
-            })
-        }
-        catch (err) {
-            resolve(err)
+            }
+            catch (err) {
+                resolve(err)
 
 
-        }
+            }
         })
-    }
+
+    },
+    postEditMyDetails: (userdetails, userId) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+
+                user_collection.updateOne({ _id: userId }, {
+                    $set: {
+                        Name: userdetails.Name,
+                        Email: userdetails.Email
+
+                    }
+                }).then((data) => {
+                    if (data) {
+                        resolve({ Status: true })
+
+                    } else {
+                        resolve({ Status: false })
+                    }
+
+                })
+            }
+            catch (err) {
+                resolve(err)
+
+
+            }
+        })
+    },
+    DownloadBill: (userId, orderID) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+              order= await order_collection.findOne({userId:userId})
+              let itemIndex = order.orders.findIndex(p => p._id == orderID);
+              if (itemIndex > -1) {
+                let orderItem = order.orders[itemIndex];
+                resolve(orderItem)
+              }else{
+                resolve()
+              }
+                
+            }
+            catch (err) {
+                resolve(err)
+
+
+            }
+        })
+
+        }
+
 }
 

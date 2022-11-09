@@ -141,6 +141,7 @@ router.route('/editMydetails')
     .get(middleware.sessioncheck,middleware.verifyactive,UserController.editMydetails)
     .post(middleware.sessioncheck,middleware.verifyactive, UserController.postEditMyDetails)
 
+router.get('/DownloadBill/:id',middleware.sessioncheck,middleware.verifyactive,UserController.DownloadBill)
 
 module.exports = router;
 

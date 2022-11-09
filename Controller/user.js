@@ -3,7 +3,30 @@ const Product_Helpers = require('../helpers/product_helpers');
 const e = require('express');
 const { count } = require('../models/Schema/product_Schema');
 const Coupon_schema = require('../models/Schema/Coupon_schema');
+const easyinvoice = require('easyinvoice')
+const fs = require('fs')
 require('dotenv').config()
+
+let invoiceData = {
+    "client": {
+        "company": "Smart World",
+        "address": "Street 456",
+        "zip": "Zip code",
+        "country": "Country Name"
+    },
+
+    "information": {
+        // Invoice number
+        "number": "2021.0001",
+        // Invoice data
+        "date": "12-12-2021",
+    },
+    "products": [],
+    "settings": {
+        "currency": "INR", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
+    },
+
+};
 
 
 let signuperr = null;
@@ -634,7 +657,7 @@ exports.getOdersProduct = (req, res) => {
     try {
         user = req.session.user
         id = req.params.id
-        console.log( id);
+        console.log(id);
         User_Helpers.ordersProductlist(user, id).then((order) => {
             res.render('user/oderlist-one-product', { login, cartcount, wishlistcount, order, usercart, usercart, Categorydetails, banner })
         })
@@ -902,9 +925,46 @@ exports.editMydetails = (req, res) => {
 exports.postEditMyDetails = (req, res) => {
     try {
         userId = req.session.user._id
-        req.session.user.Email=req.body.Email
+        req.session.user.Email = req.body.Email
         User_Helpers.postEditMyDetails(req.body, userId).then(() => {
             res.redirect('/getMyAccount')
+        })
+    } catch (err) {
+        res.redirect('/err')
+    }
+}
+
+exports.DownloadBill = (req, res) => {
+    try {
+        orderID = req.params.id
+        userId = req.session.user._id
+        User_Helpers.DownloadBill(userId, orderID).then((order) => {
+            if(order){
+
+                productsData=order.product
+                invoiceData.products = []
+                for (i of productsData) {
+                    invoiceData.products.push({
+                        "quantity": Number(i.quantity),
+                        "description": i.name,
+                        "price": Number(i.price),
+                        "Total":Number(order.totalprice)
+                    })
+                }
+                
+                easyinvoice.createInvoice(invoiceData,async function (result) {
+                    /*  
+                        5.  The 'result' variable will contain our invoice as a base64 encoded PDF
+                            Now let's save our invoice to our local filesystem so we can have a look!
+                            We will be using the 'fs' library we imported above for this.
+                    */
+    
+                    fs.writeFileSync("./public/invoice/invoice.pdf", result.pdf, 'base64');
+                    await res.download('./public/invoice/invoice.pdf')
+                })
+
+
+            }
         })
     } catch (err) {
         res.redirect('/err')
