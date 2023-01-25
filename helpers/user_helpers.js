@@ -845,13 +845,13 @@ module.exports = {
                                                         response.Status = true
                                                         resolve(response)
                                                     } else {
-                                                        response.Message = "!please cheak your cart your Coupon minpurchase !" + data1[0].minpurchase
+                                                        response.Message = "!please check your cart your Coupon minpurchase !" + data1[0].minpurchase
                                                         response.Status = false
                                                         resolve(response)
                                                     }
 
                                                 } else {
-                                                    response.Message = "!please cheak your cart your Coupon maxlimite !" + data1[0].maxlimite
+                                                    response.Message = "!please check your cart your Coupon maxlimite !" + data1[0].maxlimite
                                                     response.Status = false
                                                     resolve(response)
                                                 }
@@ -874,7 +874,7 @@ module.exports = {
 
                                     }
                                 } else {
-                                    response.Message = "!please cheak Coupon code !"
+                                    response.Message = "!please check Coupon code !"
                                     response.Status = false
                                     resolve(response)
                                 }

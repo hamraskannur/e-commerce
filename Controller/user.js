@@ -31,7 +31,7 @@ let invoiceData = {
 
 let signuperr = null;
 let loginErr = null;
-let login = 'false'
+let login = false
 let cartcount = 0
 let wishlistcount = 0
 let usercart = null
@@ -69,13 +69,14 @@ exports.UserHome = (req, res, next) => {
                     Categorysub = Category
                     User_Helpers.getcartcount(userId).then((cart) => {
                         cartcount = cart.cartcount
-                        usercart = cart.usercart
+                        req.session.cartproducts = cart.usercart
                         User_Helpers.getwishlistcount(userId).then((wishlists) => {
-                            wishlistcount = wishlists.wishlistcount
-                            wishlist = wishlists.userwishlist
+                            req.session.wishlistcount = wishlists.wishlistcount
+                            console.log( req.session.wishlistcount,"kokokok");
+                            req.session.wishlist = wishlists.userwishlist
                             User_Helpers.getbanner().then((newbanner) => {
                                 banner = newbanner
-                                res.render('user/user_home', { currentpage: "1", pages, login, products, Categorydetails, cartcount, wishlistcount, usercart, banner, Categorysub, wishlist });
+                                res.render('user/user_home', { currentpage: "1", pages, login:req.session.userlogin, products, Categorydetails, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, banner, Categorysub, wishlist:req.session.wishlist });
                             })
                         })
                     })
@@ -91,7 +92,7 @@ exports.UserHome = (req, res, next) => {
                     User_Helpers.getbanner().then((newbanner) => {
                         banner = newbanner
 
-                        res.render('user/user_home', { currentpage: "1", pages, login, products, Categorydetails, cartcount, wishlistcount, usercart, banner, Categorysub, wishlist });
+                        res.render('user/user_home', { currentpage: "1", pages, login:req.session.userlogin, products, Categorydetails, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, banner, Categorysub, wishlist:req.session.wishlist });
                     })
                 })
             })
@@ -109,7 +110,7 @@ exports.getuserSignup = (req, res) => {
         if (req.session.userlogin) {
             res.redirect('/')
         } else {
-            res.render('user/user_signup', { signuperr, login, cartcount, wishlistcount, usercart, Categorydetails, banner })
+            res.render('user/user_signup', { signuperr, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
         }
         signuperr = null
     } catch (err) {
@@ -128,7 +129,7 @@ exports.postusersignup = (req, res) => {
             .verifications
             .create({ to: '+91' + userphone, channel: 'sms' })
             .then(verification => console.log(verification.status));
-        res.render('user/user-otp', { userphone, login, cartcount, wishlistcount, usercart, usercart, Categorydetails, banner })
+        res.render('user/user-otp', { userphone, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
     } catch (err) {
         res.redirect('/err')
     }
@@ -149,7 +150,7 @@ exports.postOtp = (req, res) => {
                         } else {
                             req.session.user = Status
                             req.session.userlogin = true;
-                            login = "true"
+                            login = req.session.userlogin
                             res.redirect('/')
                         }
                     })
@@ -171,7 +172,7 @@ exports.getuserlogin = (req, res) => {
         if (req.session.userlogin) {
             res.redirect('/')
         } else {
-            res.render('user/user_login', { errforgotPassword, forgotPassword, loginErr, login, cartcount, wishlistcount, usercart, usercart, Categorydetails, banner })
+            res.render('user/user_login', { errforgotPassword, forgotPassword, loginErr, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
         }
         loginErr = null
         forgotPassword = null
@@ -188,7 +189,6 @@ exports.postuserlogin = (req, res) => {
             if (response.Status) {
                 req.session.user = response.user
                 req.session.userlogin = true;
-                login = "true"
                 res.json(response)
             } else {
                 res.json(response)
@@ -203,11 +203,13 @@ exports.postuserlogin = (req, res) => {
 // get user logout
 exports.Userlogout = (req, res) => {
     try {
-        wishlistcount = 0
         cartcount = 0
         req.session.user = null
         req.session.userlogin = false
-        login = 'null'
+        req.session.wishlist=null
+        req.session.wishlistcount=null
+        req.session.cartproducts=null
+        login = false
         res.redirect('/')
     } catch (err) {
         res.redirect('/err')
@@ -230,7 +232,7 @@ exports.getusercart = (req, res) => {
         User_Helpers.getcartproduct(userId).then((data) => {
             User_Helpers.getUserAddres(userId).then((response) => {
                 Addres = response.data
-                res.render('user/user_cart', { login, data, Addres, cartcount, wishlistcount, usercart, usercart, Categorydetails, banner, Checkouterrmes });
+                res.render('user/user_cart', { login:req.session.userlogin, data, Addres, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner, Checkouterrmes });
             })
 
         })
@@ -257,13 +259,13 @@ exports.getAllproduct = (req, res) => {
                         Categorysub = Category
                         User_Helpers.getcartcount(userId).then((cart) => {
                             cartcount = cart.cartcount
-                            usercart = cart.usercart
+                            req.session.cartproducts = cart.usercart
                             User_Helpers.getwishlistcount(userId).then((wishlists) => {
-                                wishlistcount = wishlists.wishlistcount
+                                req.session.wishlistcount = wishlists.wishlistcount
                                 wishlist = wishlists.userwishlist
                                 User_Helpers.getbanner().then((newbanner) => {
                                     banner = newbanner
-                                    res.render('user/user_product', { pages, currentpage: 1, products, login, cartcount, wishlistcount, usercart, Categorydetails, Categorysub, usercart, Categorydetails, banner, wishlist })
+                                    res.render('user/user_product', { pages, currentpage: 1, products, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, Categorysub, usercart, Categorydetails, banner, wishlist:req.session.wishlist})
                                 })
                             })
                         })
@@ -276,7 +278,7 @@ exports.getAllproduct = (req, res) => {
                     User_Helpers.getbanner().then((newbanner) => {
                         banner = newbanner
 
-                        res.render('user/user_product', { pages, currentpage: 1, products, login, cartcount, wishlistcount, usercart, Categorydetails, Categorysub, usercart, Categorydetails, banner, wishlist })
+                        res.render('user/user_product', { pages, currentpage: 1, products, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, Categorysub, usercart, Categorydetails, banner, wishlist:req.session.wishlist })
 
                     })
                 })
@@ -324,7 +326,7 @@ exports.getOneproduct = (req, res) => {
                     User_Helpers.getwishlistcount(userId).then((wishlists) => {
                         wishlistcount = wishlists.wishlistcount
                         wishlist = wishlists.userwishlist
-                        res.render('user/user_product-detail', { wishlist, categoryProduct, product, login, cartcount, wishlistcount, usercart, usercart, Categorydetails, banner })
+                        res.render('user/user_product-detail', { wishlist:req.session.wishlist, categoryProduct, product, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
                     })
                 })
             })
@@ -334,7 +336,7 @@ exports.getOneproduct = (req, res) => {
                     categoryProduct = response.data
                     product = oneproduct
 
-                    res.render('user/user_product-detail', { wishlist, categoryProduct, product, login, cartcount, wishlistcount, usercart, usercart, Categorydetails, banner })
+                    res.render('user/user_product-detail', { wishlist:req.session.wishlist, categoryProduct, product, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
                 })
             })
         }
@@ -419,7 +421,7 @@ exports.addtowishlist = (req, res) => {
         if (req.session.userlogin) {
             User_Helpers.addwishlist(req.params.id, user).then((Status) => {
                 if (Status.addwishlist) {
-                    wishlistcount = wishlistcount + 1
+                    req.session.wishlistcount  = req.session.wishlistcount  + 1
                     res.json({ Status: true })
                 } else {
 
@@ -446,7 +448,7 @@ exports.getwishlistpage = (req, res) => {
                 } else {
                     wishlistproduct = response.wishlist
                     wishlist = response.wishlist
-                    res.render('user/user_wishlist', { login, wishlist, cartcount, wishlistcount, usercart, usercart, Categorydetails, banner })
+                    res.render('user/user_wishlist', { login:req.session.userlogin, wishlist, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
                 }
             })
         } else {
@@ -477,7 +479,7 @@ exports.wishlistProductDelete = (req, res) => {
         if (req.session.userlogin) {
             user = req.session.user
             User_Helpers.wishlistProductDelete(req.params.id, user._id).then((Status) => {
-                wishlistcount = wishlistcount - 1
+                req.session.wishlistcount  = req.session.wishlistcount  - 1
                 res.json({ Status: true })
             })
         } else {
@@ -493,7 +495,7 @@ exports.checkoutAddress = (req, res) => {
         if (req.session.userlogin) {
             user = req.session.user
             User_Helpers.getuseraddress(user._id).then((useraddress) => {
-                res.render("user/user_AddressPage", { useraddress, login, cartcount, wishlistcount, usercart, usercart, Categorydetails, banner })
+                res.render("user/user_AddressPage", { useraddress, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
             })
         } else {
             res.redirect('/login')
@@ -532,10 +534,7 @@ exports.Checkout = async (req, res) => {
                     usercart = null
                     if (response.Status) {
                         res.json(response)
-
                     } else {
-
-
                         User_Helpers.saveUseCoupon(user._id, Coupon._id).then((Status) => {
                             req.session.usercoupon = null
                             if (response.PaymentMethod === "onlinePayment") {
@@ -552,12 +551,6 @@ exports.Checkout = async (req, res) => {
                                 res.redirect('/viewcartmycart')
                             }
                         })
-
-
-
-
-
-
 
                     }
                 })
@@ -609,7 +602,7 @@ exports.gethome = (req, res) => {
 //get orderSuccess page
 exports.orderSuccess = (req, res) => {
     try {
-        res.render('user/payment-success', { login, cartcount, wishlistcount, usercart, usercart, Categorydetails, banner })
+        res.render('user/payment-success', { login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
     } catch (err) {
         res.redirect('/err')
     }
@@ -619,7 +612,7 @@ exports.orderslist = (req, res) => {
     try {
         user = req.session.user
         User_Helpers.orderslist(user._id).then((orders) => {
-            res.render('user/user_orderslist', { orders, login, cartcount, wishlistcount, usercart, usercart, Categorydetails, banner })
+            res.render('user/user_orderslist', { orders, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
         })
     } catch (err) {
         res.redirect('/err')
@@ -645,7 +638,7 @@ exports.getMyAccount = (req, res) => {
     try {
         user = req.session.user
         User_Helpers.getMyAccount(user.Email).then((userMyAccount) => {
-            res.render('user/user_MyAccount', { login, cartcount, wishlistcount, userMyAccount, usercart, usercart, Categorydetails, banner })
+            res.render('user/user_MyAccount', { login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, userMyAccount, usercart: req.session.cartproducts, Categorydetails, banner })
 
         })
     } catch (err) {
@@ -659,7 +652,7 @@ exports.getOdersProduct = (req, res) => {
         id = req.params.id
         console.log(id);
         User_Helpers.ordersProductlist(user, id).then((order) => {
-            res.render('user/oderlist-one-product', { login, cartcount, wishlistcount, order, usercart, usercart, Categorydetails, banner })
+            res.render('user/oderlist-one-product', { login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, order, usercart: req.session.cartproducts, Categorydetails, banner })
         })
     } catch (err) {
         console.log(err);
@@ -685,9 +678,13 @@ exports.getPopupCart = (req, res) => {
     try {
         if (req.session.userlogin) {
             userId = req.session.user
-            User_Helpers.getcartproduct(userId).then((cartproducts) => {
-                res.json(cartproducts)
+            User_Helpers.getcartproduct(userId).then((cartproduct) => {
+                req.session.cartproducts=cartproduct
+
+                res.json({cartproducts:req.session.cartproducts})
             })
+        }else{
+            res.json({cartproducts:req.session.cartproducts})
         }
     } catch (err) {
         res.redirect('/err')
@@ -746,7 +743,8 @@ exports.selectAddress = (req, res) => {
 
 exports.Contact = (req, res) => {
     try {
-        res.render('user/user_contact-page', { login, wishlist, cartcount, wishlistcount, usercart, Categorydetails, banner })
+        
+        res.render('user/user_contact-page', { login:req.session.userlogin, wishlist, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
     } catch (err) {
         res.redirect('/err')
     }
@@ -795,7 +793,7 @@ exports.editAddress = (req, res) => {
     try {
         userId = req.session.user._id
         User_Helpers.editAddress(req.params.id, userId).then((Address) => {
-            res.render('user/edite-Address', { Address, login, cartcount, wishlistcount, usercart, Categorydetails, banner })
+            res.render('user/edite-Address', { Address, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
 
         })
     } catch (err) {
@@ -820,7 +818,7 @@ exports.homepage = (req, res) => {
             products = productdetails.products
             pages = Math.ceil(productdetails.productcount / perpage)
             currentpage = req.params.page
-            res.render('user/user_home', { currentpage, pages, login, products, Categorydetails, cartcount, wishlistcount, usercart, banner, Categorysub, wishlist });
+            res.render('user/user_home', { currentpage, pages, login:req.session.userlogin, products, Categorydetails, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, banner, Categorysub, wishlist:req.session.wishlist});
 
         })
     } catch (err) {
@@ -834,7 +832,7 @@ exports.productpage = (req, res) => {
             products = productdetails.products
             pages = Math.ceil(productdetails.productcount / perpage)
             currentpage = req.params.page
-            res.render('user/user_product', { pages, currentpage, products, login, cartcount, wishlistcount, usercart, Categorydetails, Categorysub, usercart, Categorydetails, banner, wishlist })
+            res.render('user/user_product', { pages, currentpage, products, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, Categorysub, usercart, Categorydetails, banner, wishlist:req.session.wishlist })
 
         })
     } catch (err) {
@@ -864,7 +862,7 @@ exports.forgotPassword = (req, res) => {
 exports.getopt = (req, res) => {
     try {
         userphone = req.params.phoneno
-        res.render('user/forgotPasswordOtp', { otperr, userphone, login, cartcount, wishlistcount, usercart, Categorydetails, banner })
+        res.render('user/forgotPasswordOtp', { otperr, userphone, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
     } catch (err) {
         res.redirect('/err')
     }
@@ -879,7 +877,7 @@ exports.forgotPasswordotp = (req, res) => {
             .then(verification_check => {
 
                 if (verification_check.status = "approved") {
-                    res.render('user/forgotPasswordform', { otperr, userphone, login, cartcount, wishlistcount, usercart, Categorydetails, banner })
+                    res.render('user/forgotPasswordform', { otperr, userphone, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
                 } else {
                     otperr = "your otp wrong"
                     res.redirect('/getopt/' + phoneno)
@@ -914,7 +912,7 @@ exports.editMydetails = (req, res) => {
     try {
         userId = req.session.user._id
         User_Helpers.editMydetails(userId).then((userdetails) => {
-            res.render('user/editMyAccount', { userdetails, login, cartcount, wishlistcount, usercart, Categorydetails, banner })
+            res.render('user/editMyAccount', { userdetails, login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, usercart: req.session.cartproducts, Categorydetails, banner })
         })
     } catch (err) {
         res.redirect('/err')

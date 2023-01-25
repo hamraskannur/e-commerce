@@ -79,7 +79,7 @@ router.get('/order-success',middleware.sessioncheck,middleware.verifyactive,User
 router.get('/gethome',UserController.gethome)
 
 // get order list
-router.get('/orderslist',middleware.sessioncheck,middleware.verifyactive, UserController.orderslist)
+router.get('/orderslist',middleware.sessioncheck,middleware.verifyactive,UserController.orderslist)
 
 ///verifypayment
 router.post('/verifypayment',UserController.verifypayment)

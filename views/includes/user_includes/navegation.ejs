@@ -76,7 +76,7 @@
 				
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<% if(login=="true"){%>
+						<% if(login){%>
 							<a href="/logout" style="color: white;" class="btn btn-secondary ps-4 ms-5">logout</a>
 						<%}else{%>
 							<div class="dropdown">
@@ -91,12 +91,10 @@
 							  </div>
 							
 						<% }%>
-						<% if(cartcount>0){%>
 						<button onclick="popupcart()" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart" >
 							<i  class="zmdi zmdi-shopping-cart "></i><span style="width: 1rem; height: 1rem; font-size: 10px;" class="badge badge-primary" id="cartcount"><%=cartcount%></span>
 						</button>
 						
-						<% }%>
 
 
 						<a href="/getwishlistpage"  class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 " >
@@ -117,7 +115,7 @@
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<% if(login=="true"){%>
+				<% if(login){%>
 					<a href="/logout" style="color: white;" class="btn btn-secondary ps-4 ms-5">logout</a>
 				<%}else {%>
 					<div class="dropdown">
@@ -131,15 +129,11 @@
 						</ul>
 					  </div>
 				<% }%>
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-					<i class="zmdi zmdi-search"></i>
-				</div>
-				<% if(cartcount > 0){%>
+				
 					
 					<a onclick="popupcart()"  class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart" >
 						<i  class="zmdi zmdi-shopping-cart "></i><span style="width: 1rem; height: 1rem; font-size: 10px;" class="badge badge-primary" id="cartcount"><%=cartcount%></span>
 					</a>
-					<% }%>
 
 
 						<a href="/getwishlistpage"  class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 " >
@@ -158,36 +152,7 @@
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
-			<ul class="topbar-mobile">
-				<li>
-					<div class="left-top-bar">
-						shipping for free
-					</div>
-				</li>
-
-				<li>
-					<div class="right-top-bar flex-w h-full">
-						<% if(login=="true"){%>
-						<a href="/getMyAccount" class="flex-c-m p-lr-10 trans-04">
-							My Account
-						</a>
-						<% }%>
-						<% if(login=="true"){%>
-						<a href="/logout" class="flex-c-m p-lr-10 trans-04">
-							logout
-						</a>
-						<%}else{%>
-							<a href="/login" class="flex-c-m p-lr-10 trans-04">
-								log in
-							</a>
-						<a href="/signup" class="flex-c-m p-lr-10 trans-04">
-							signup
-						</a>
-						<% }%>
-
-					</div>
-				</li>
-			</ul>
+			
 			<ul class="main-menu-m">
 				<li>
 					<a href="/userhome">Home</a>

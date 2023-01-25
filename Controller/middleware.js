@@ -7,8 +7,9 @@ const User_Helpers = require('../helpers/user_helpers')
 exports.verifyactive = (req, res, next) => {
     userId = req.session.user
     User_Helpers.checkactive(userId).then((user) => {
+        console.log(user);
         if (user[0].length !== 0) {
-            if (user.userstatus == "Block") {
+            if (user[0].userstatus == "Block") {
                 req.session.userlogin=null
                 res.redirect('/login')
             } else {
@@ -59,7 +60,6 @@ exports.bannerimages=()=>{
 
 exports.productImages=()=>{
     // requre and set multer
-
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
         cb(null,'public/product-images')
