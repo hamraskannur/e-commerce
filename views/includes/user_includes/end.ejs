@@ -589,8 +589,7 @@
 			url: '/getpopupcart/',
 			method: 'get',
 			success: (response) => {
-				if(login){
-
+				if(req.session.userlogin){
 				item = response.items
 				item.forEach((item) => {
 					if (html == null) {
