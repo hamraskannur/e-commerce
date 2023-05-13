@@ -72,7 +72,6 @@ exports.UserHome = (req, res, next) => {
                         req.session.cartproducts = cart.usercart
                         User_Helpers.getwishlistcount(userId).then((wishlists) => {
                             req.session.wishlistcount = wishlists.wishlistcount
-                            console.log( req.session.wishlistcount,"kokokok");
                             req.session.wishlist = wishlists.userwishlist
                             User_Helpers.getbanner().then((newbanner) => {
                                 banner = newbanner
@@ -650,12 +649,10 @@ exports.getOdersProduct = (req, res) => {
     try {
         user = req.session.user
         id = req.params.id
-        console.log(id);
         User_Helpers.ordersProductlist(user, id).then((order) => {
             res.render('user/oderlist-one-product', { login:req.session.userlogin, cartcount, wishlistcount:req.session.wishlistcount, order, usercart: req.session.cartproducts, Categorydetails, banner })
         })
     } catch (err) {
-        console.log(err);
         res.redirect('/err')
     }
 }
