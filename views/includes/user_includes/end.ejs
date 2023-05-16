@@ -589,22 +589,20 @@
 			url: '/getpopupcart/',
 			method: 'get',
 			success: (response) => {
-				if(req.session.userlogin){
-				item = response.items
-				item.forEach((item) => {
+				items = response.cartproducts.items
+				 console.log(items);
+				items.forEach((item) => {
 					if (html == null) {
 						html =` <li class="header-cart-item flex-w flex-t m-b-12">
 					<div class="header-cart-item-img">
 						<img src="/product-images/${item.images[0]}" alt="IMG">
 					</div>
-
 					<div class="header-cart-item-txt p-t-8">
 						<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
 							${item.name}
 						</a>
-
 						<span class="header-cart-item-info">
-								${item.quantity} x ${item.price}
+							${item.quantity} x ${item.price}
 						</span>
 					</div>
 				</li>`
@@ -613,33 +611,24 @@
 					<div class="header-cart-item-img">
 						<img src="/product-images/${item.images[0]}"  alt="IMG">
 					</div>
-
 					<div class="header-cart-item-txt p-t-8">
 						<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
 							${item.name}
 						</a>
-
 						<span class="header-cart-item-info">
 							${item.quantity} x ${item.price}
 						</span>
 					</div>
 				</li>`
-
 					}
 					totalprice = `
 				<div id="TotalPricePopupCart" class="header-cart-total w-full p-tb-40">
 					Total: <i class="bi bi-currency-rupee"></i>${response.bill}
 				</div>`
-
 				})
 				TotalPricePopupCart.innerHTML = totalprice
 				userPopupCart.innerHTML = html
-			}else{
-				location.href = '/login'
-
 			}
-			}
-
 		})
 
 	}
